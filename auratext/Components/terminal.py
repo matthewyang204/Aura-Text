@@ -191,6 +191,7 @@ class AuraTextTerminalWidget(QWidget):
     def run_script(self):
         print("hi")
         script = self.script_edit.text()
+        self.script_edit.clear()
 
         self.commands.append(script)
         with open(f'{self._window.local_app_data}/data/terminal_history.txt', 'a') as self.thistory_file:
