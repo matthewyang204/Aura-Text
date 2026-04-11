@@ -189,7 +189,6 @@ class AuraTextTerminalWidget(QWidget):
                 self.list_model.appendRow(item)
 
     def run_script(self):
-        print("hi")
         script = self.script_edit.text()
         self.script_edit.clear()
 
