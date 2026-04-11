@@ -40,7 +40,7 @@ class TerminalEmulator(QWidget):
 
         self.setup_toolbar()
 
-        with open(f"{local_app_data}/data/theme.json", "r") as themes_file:
+        with open(os.path.join(local_app_data, "AuraText", "data", "theme.json"), "r") as themes_file:
             self._themes = json.load(themes_file)
 
         editor_bg = self._themes.get("editor_theme", "#121212")
