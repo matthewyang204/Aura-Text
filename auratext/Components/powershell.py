@@ -30,6 +30,31 @@ else:
     print("Unsupported operating system")
     sys.exit(1)
 
+def find_powershell_core(self):
+    possible_paths = [
+        r"C:\Program Files\PowerShell\7\pwsh.exe",
+        r"C:\Program Files (x86)\PowerShell\7\pwsh.exe",
+        "/usr/local/bin/bash",
+        "/usr/bin/bash",
+        "/opt/homebrew/bin/bash",
+        "/bin/bash",
+        "/bin/zsh",
+    ]
+
+    for path in possible_paths:
+        if os.path.exists(path):
+            return path
+    try:
+        result = subprocess.run(
+            ["where", "pwsh"] if os.name == "nt" else ["which", "pwsh"],
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+        return result.stdout.strip()
+    except subprocess.CalledProcessError:
+        return None
+
 class TerminalEmulator(QWidget):
     commandEntered = pyqtSignal(str)
 
@@ -37,6 +62,7 @@ class TerminalEmulator(QWidget):
         super().__init__(parent)
         self.layout = QVBoxLayout(self)
         self.layout.setContentsMargins(0, 0, 0, 0)
+        self.find_powershell_core = find_powershell_core.__get__(self)
 
         self.setup_toolbar()
 
@@ -201,31 +227,6 @@ class TerminalEmulator(QWidget):
             )
 
         self.display_prompt()
-
-    def find_powershell_core(self):
-        possible_paths = [
-            r"C:\Program Files\PowerShell\7\pwsh.exe",
-            r"C:\Program Files (x86)\PowerShell\7\pwsh.exe",
-            "/usr/local/bin/bash",
-            "/usr/bin/bash",
-            "/opt/homebrew/bin/bash",
-            "/bin/bash",
-            "/bin/zsh",
-        ]
-
-        for path in possible_paths:
-            if os.path.exists(path):
-                return path
-        try:
-            result = subprocess.run(
-                ["where", "pwsh"] if os.name == "nt" else ["which", "pwsh"],
-                capture_output=True,
-                text=True,
-                check=True,
-            )
-            return result.stdout.strip()
-        except subprocess.CalledProcessError:
-            return None
 
     def handle_stdout(self):
         data = (
