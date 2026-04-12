@@ -206,8 +206,10 @@ class TerminalEmulator(QWidget):
         possible_paths = [
             r"C:\Program Files\PowerShell\7\pwsh.exe",
             r"C:\Program Files (x86)\PowerShell\7\pwsh.exe",
-            "/usr/local/bin/pwsh",
-            "/usr/bin/pwsh",
+            "/usr/local/bin/bash",
+            "/usr/bin/bash",
+            "/opt/homebrew/bin/bash",
+            "/bin/bash",
         ]
 
         for path in possible_paths:
