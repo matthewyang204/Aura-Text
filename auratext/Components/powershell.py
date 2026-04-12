@@ -190,13 +190,13 @@ class TerminalEmulator(QWidget):
         if powershell_path:
             self.processes[index].start(powershell_path)
             self.terminal.appendPlainText(
-                f"PowerShell Core started at {powershell_path} in directory {project_path}.\n"
+                f"System shell started at {powershell_path} in directory {project_path}.\n"
                 "Type your commands below.\n"
             )
         else:
             self.processes[index].start("powershell.exe")
             self.terminal.appendPlainText(
-                f"PowerShell started in directory {project_path}.\n"
+                f"System shell started in directory {project_path}.\n"
                 "Type your commands below.\n"
             )
 
@@ -210,6 +210,7 @@ class TerminalEmulator(QWidget):
             "/usr/bin/bash",
             "/opt/homebrew/bin/bash",
             "/bin/bash",
+            "/bin/zsh",
         ]
 
         for path in possible_paths:

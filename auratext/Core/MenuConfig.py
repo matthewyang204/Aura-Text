@@ -507,7 +507,10 @@ QMenu::item::selected {{
     toggle_terminal_action.setCheckable(True)
     toggle_terminal_action.triggered.connect(toggle_terminal)
     terminal_menu.addAction(toggle_terminal_action)
-    terminal_menu.addAction("Powershell", self.setupPowershell)
+    if platform.system() == "Windows":
+        terminal_menu.addAction("Powershell", self.setupPowershell)
+    else:
+        terminal_menu.addAction("Shell", self.setupPowershell)
     toggle_pyconsole_action = QAction("Python Console", self)
     toggle_pyconsole_action.setCheckable(True)
     toggle_pyconsole_action.triggered.connect(toggle_pyconsole)
