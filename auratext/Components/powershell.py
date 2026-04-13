@@ -30,6 +30,31 @@ else:
     print("Unsupported operating system")
     sys.exit(1)
 
+def find_powershell_core(self):
+    possible_paths = [
+        r"C:\Program Files\PowerShell\7\pwsh.exe",
+        r"C:\Program Files (x86)\PowerShell\7\pwsh.exe",
+        "/usr/local/bin/bash",
+        "/usr/bin/bash",
+        "/opt/homebrew/bin/bash",
+        "/bin/bash",
+        "/bin/zsh",
+    ]
+
+    for path in possible_paths:
+        if os.path.exists(path):
+            return path
+    try:
+        result = subprocess.run(
+            ["where", "pwsh"] if os.name == "nt" else ["which", "pwsh"],
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+        return result.stdout.strip()
+    except subprocess.CalledProcessError:
+        return None
+
 class TerminalEmulator(QWidget):
     commandEntered = pyqtSignal(str)
 
@@ -37,10 +62,11 @@ class TerminalEmulator(QWidget):
         super().__init__(parent)
         self.layout = QVBoxLayout(self)
         self.layout.setContentsMargins(0, 0, 0, 0)
+        self.find_powershell_core = find_powershell_core.__get__(self)
 
         self.setup_toolbar()
 
-        with open(f"{local_app_data}/data/theme.json", "r") as themes_file:
+        with open(os.path.join(local_app_data, "AuraText", "data", "theme.json"), "r") as themes_file:
             self._themes = json.load(themes_file)
 
         editor_bg = self._themes.get("editor_theme", "#121212")
@@ -190,39 +216,17 @@ class TerminalEmulator(QWidget):
         if powershell_path:
             self.processes[index].start(powershell_path)
             self.terminal.appendPlainText(
-                f"PowerShell Core started at {powershell_path} in directory {project_path}.\n"
+                f"System shell started at {powershell_path} in directory {project_path}.\n"
                 "Type your commands below.\n"
             )
         else:
             self.processes[index].start("powershell.exe")
             self.terminal.appendPlainText(
-                f"PowerShell started in directory {project_path}.\n"
+                f"System shell started in directory {project_path}.\n"
                 "Type your commands below.\n"
             )
 
         self.display_prompt()
-
-    def find_powershell_core(self):
-        possible_paths = [
-            r"C:\Program Files\PowerShell\7\pwsh.exe",
-            r"C:\Program Files (x86)\PowerShell\7\pwsh.exe",
-            "/usr/local/bin/pwsh",
-            "/usr/bin/pwsh",
-        ]
-
-        for path in possible_paths:
-            if os.path.exists(path):
-                return path
-        try:
-            result = subprocess.run(
-                ["where", "pwsh"] if os.name == "nt" else ["which", "pwsh"],
-                capture_output=True,
-                text=True,
-                check=True,
-            )
-            return result.stdout.strip()
-        except subprocess.CalledProcessError:
-            return None
 
     def handle_stdout(self):
         data = (

@@ -154,31 +154,6 @@ QMenu::item::selected {{
     #view_menu.addAction("AT Terminal", self.terminal_widget)
     #view_menu.addAction("Python Console", self.python_console)
 
-    def toggle_terminal():
-        if toggle_terminal_action.isChecked():
-            self.terminal_widget()
-        else:
-            self.hideTerminal()
-
-
-    def toggle_pyconsole():
-        if toggle_pyconsole_action.isChecked():
-            self.python_console()
-        else:
-            self.hide_pyconsole()
-
-    toggle_terminal_action = QAction("AT Terminal", self)
-    toggle_terminal_action.setCheckable(True)
-    toggle_terminal_action.triggered.connect(toggle_terminal)
-    view_menu.addAction(toggle_terminal_action)
-
-    view_menu.addAction("Powershell", self.setupPowershell)
-
-    toggle_pyconsole_action = QAction("Python Console", self)
-    toggle_pyconsole_action.setCheckable(True)
-    toggle_pyconsole_action.triggered.connect(toggle_pyconsole)
-    view_menu.addAction(toggle_pyconsole_action)
-
     def read_only():
         if toggle_read_only_action.isChecked():
             self.toggle_read_only()
@@ -514,6 +489,34 @@ QMenu::item::selected {{
     prefernces_menu.addAction("Import Theme", self.import_theme)
     menubar.addMenu(prefernces_menu)
 
+    terminal_menu = QMenu("&Terminal", self)
+    def toggle_terminal():
+        if toggle_terminal_action.isChecked():
+            self.terminal_widget()
+        else:
+            self.hideTerminal()
+
+
+    def toggle_pyconsole():
+        if toggle_pyconsole_action.isChecked():
+            self.python_console()
+        else:
+            self.hide_pyconsole()
+
+    toggle_terminal_action = QAction("AT Terminal", self)
+    toggle_terminal_action.setCheckable(True)
+    toggle_terminal_action.triggered.connect(toggle_terminal)
+    terminal_menu.addAction(toggle_terminal_action)
+    if platform.system() == "Windows":
+        terminal_menu.addAction("Powershell", self.setupPowershell)
+    else:
+        terminal_menu.addAction("Shell", self.setupPowershell)
+    toggle_pyconsole_action = QAction("Python Console", self)
+    toggle_pyconsole_action.setCheckable(True)
+    toggle_pyconsole_action.triggered.connect(toggle_pyconsole)
+    terminal_menu.addAction(toggle_pyconsole_action)
+    menubar.addMenu(terminal_menu)
+
     help_menu = QMenu("&Help", self)
     help_menu.addAction("Welcome", self.show_welcome).setWhatsThis(
         "Show the Welcome page"
@@ -543,7 +546,7 @@ QMenu::item::selected {{
 
     # Define a dictionary to map section names to corresponding QMenu instances
     sections = {"File": file_menu, "Edit": edit_menu, "View": view_menu, "Code": code_menu, "Tools": tools_menu,
-                "Git": git_menu, "Preferences": prefernces_menu, "?": help_menu}
+                "Git": git_menu, "Preferences": prefernces_menu, "Terminal": terminal_menu, "Help": help_menu}
 
     # Load and categorize plugins
     plugin_dir = os.path.abspath(f"{self.local_app_data}/plugins")  # Path to your plugins directory

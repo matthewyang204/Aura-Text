@@ -7,6 +7,7 @@ import sys
 from datetime import datetime
 from typing import TYPE_CHECKING
 import platform
+import shlex
 
 import pyautogui
 from PyQt6.QtCore import QSize
@@ -14,6 +15,8 @@ from PyQt6.QtGui import QShortcut, QKeySequence, QFont, QIcon, QStandardItem, QS
 from PyQt6.QtWidgets import QWidget, QLineEdit, QTextEdit, QVBoxLayout, QPushButton, QHBoxLayout, QDialog, QListView
 from art import text2art
 from pyjokes import pyjokes
+
+from auratext.Components.powershell import find_powershell_core as find_shellPath
 
 now = datetime.now()
 
@@ -78,6 +81,7 @@ class AuraTextTerminalWidget(QWidget):
         self.list_view = QListView()
         self.list_view.doubleClicked.connect(self.item_clicked)
         self.list_model = QStandardItemModel()
+        self.shellPath = find_shellPath(None)
 
         with open(f'{self._window.local_app_data}/data/terminal_history.txt', 'r+') as self.thistory_file:
             self.commands = list(self.thistory_file.readlines())
@@ -189,8 +193,8 @@ class AuraTextTerminalWidget(QWidget):
                 self.list_model.appendRow(item)
 
     def run_script(self):
-        print("hi")
         script = self.script_edit.text()
+        self.script_edit.clear()
 
         self.commands.append(script)
         with open(f'{self._window.local_app_data}/data/terminal_history.txt', 'a') as self.thistory_file:
@@ -274,10 +278,11 @@ class AuraTextTerminalWidget(QWidget):
                     project_dir = None
                 
                 # Run command in project directory if available
+                script = shlex.split(script)
                 if project_dir:
-                    result = subprocess.run(["powershell", script], capture_output=True, cwd=project_dir)
+                    result = subprocess.run(script, capture_output=True, cwd=project_dir)
                 else:
-                    result = subprocess.run(["powershell", script], capture_output=True)
+                    result = subprocess.run(script, capture_output=True)
                     
                 res = result.stdout.decode("utf-8")
                 
