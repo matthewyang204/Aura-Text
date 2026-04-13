@@ -174,11 +174,37 @@ class Shortcuts(QDockWidget):
         split_editor = QLabel("Toggle Split Editor: Ctrl+\\")
         dock_layout.addWidget(split_editor)
 
+
         fullscreen = QLabel("Toggle Fullscreen: F11")
         dock_layout.addWidget(fullscreen)
 
+        zen_mode = QLabel("Toggle Zen Mode: Ctrl+.")
+        dock_layout.addWidget(zen_mode)
+
+        read_only = QLabel("Toggle Read-Only: Ctrl+R")
+        dock_layout.addWidget(read_only)
+
+        project_dir = QLabel("Project Directory: Ctrl+E")
+        dock_layout.addWidget(project_dir)
+
+        python_console = QLabel("Python Console: Ctrl+Shift+Y")
+        dock_layout.addWidget(python_console)
+
+        powershell = QLabel("Open Powershell: Ctrl+Shift+P")
+        dock_layout.addWidget(powershell)
+
         settings = QLabel("Settings: Ctrl+,")
         dock_layout.addWidget(settings)
+    # Tools/Other Operations
+    tools_heading = QLabel("Tools/Other Operations")
+    tools_heading.setStyleSheet("font-weight: bold; font-size: 16px;")
+    dock_layout.addWidget(tools_heading)
+
+    boilerplates = QLabel("Boilerplates: Ctrl+Alt+B")
+    dock_layout.addWidget(boilerplates)
+
+    todo = QLabel("To-Do: Ctrl+Alt+T")
+    dock_layout.addWidget(todo)
 
         placeholder6 = QLabel("")
         dock_layout.addWidget(placeholder6)
