@@ -2517,7 +2517,11 @@ class Window(QMainWindow):
         self.current_editor.copy()
 
     def summary(self):
-        text = self.current_editor.text()
+        try:
+            text = self.current_editor.text()
+        except AttributeError:
+            QMessageBox.warning(self, "Not An Editor", "The current widget is not an editor.")
+            return
         lines = text.count('\n') + 1 if text else 0
         words = len(text.split())
         chars_with_spaces = len(text)
