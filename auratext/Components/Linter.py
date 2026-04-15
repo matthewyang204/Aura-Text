@@ -120,6 +120,7 @@ class LinterWorker(QObject):
     def _run_flake8(self) -> List[LintMessage]:
         """Run flake8 and parse output"""
         messages = []
+        return messages
         try:
             result = subprocess.run(
                 [sys.executable, '-m', 'flake8', '--format=%(row)d:%(col)d:%(code)s:%(text)s', self.temp_file],
