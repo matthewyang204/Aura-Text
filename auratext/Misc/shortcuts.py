@@ -174,7 +174,6 @@ class Shortcuts(QDockWidget):
         split_editor = QLabel("Toggle Split Editor: Ctrl+\\")
         dock_layout.addWidget(split_editor)
 
-
         fullscreen = QLabel("Toggle Fullscreen: F11")
         dock_layout.addWidget(fullscreen)
 
@@ -195,16 +194,17 @@ class Shortcuts(QDockWidget):
 
         settings = QLabel("Settings: Ctrl+,")
         dock_layout.addWidget(settings)
-    # Tools/Other Operations
-    tools_heading = QLabel("Tools/Other Operations")
-    tools_heading.setStyleSheet("font-weight: bold; font-size: 16px;")
-    dock_layout.addWidget(tools_heading)
 
-    boilerplates = QLabel("Boilerplates: Ctrl+Alt+B")
-    dock_layout.addWidget(boilerplates)
+        # Tools/Other Operations
+        tools_heading = QLabel("Tools/Other Operations")
+        tools_heading.setStyleSheet("font-weight: bold; font-size: 16px;")
+        dock_layout.addWidget(tools_heading)
 
-    todo = QLabel("To-Do: Ctrl+Alt+T")
-    dock_layout.addWidget(todo)
+        boilerplates = QLabel("Boilerplates: Ctrl+Alt+B")
+        dock_layout.addWidget(boilerplates)
+
+        todo = QLabel("To-Do: Ctrl+Alt+T")
+        dock_layout.addWidget(todo)
 
         placeholder6 = QLabel("")
         dock_layout.addWidget(placeholder6)
