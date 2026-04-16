@@ -84,6 +84,9 @@ class LinterWorker(QObject):
     def _run_pylint(self) -> List[LintMessage]:
         """Run pylint and parse output"""
         messages = []
+        if platform.system() == "Windows":
+            print("WARNING: Windows does not like Python's forking, so we cannot run subprocesses like pylint here.")
+            return messages
         try:
             result = subprocess.run(
                 [sys.executable, '-m', 'pylint', '--output-format=json', self.temp_file],
@@ -120,7 +123,9 @@ class LinterWorker(QObject):
     def _run_flake8(self) -> List[LintMessage]:
         """Run flake8 and parse output"""
         messages = []
-        return messages
+        if platform.system() == "Windows":
+            print("WARNING: Windows does not like Python's forking, so we cannot run subprocesses like flake8 here.")
+            return messages
         try:
             result = subprocess.run(
                 [sys.executable, '-m', 'flake8', '--format=%(row)d:%(col)d:%(code)s:%(text)s', self.temp_file],
@@ -159,6 +164,9 @@ class LinterWorker(QObject):
     def _run_pyflakes(self) -> List[LintMessage]:
         """Run pyflakes and parse output"""
         messages = []
+        if platform.system() == "Windows":
+            print("WARNING: Windows does not like Python's forking, so we cannot run subprocesses like pyflakes here.")
+            return messages
         try:
             result = subprocess.run(
                 [sys.executable, '-m', 'pyflakes', self.temp_file],
