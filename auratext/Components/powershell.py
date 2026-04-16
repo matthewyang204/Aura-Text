@@ -15,6 +15,9 @@ from PyQt6.QtWidgets import (
     QWidget,
 )
 
+sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'notepadequalequal'))
+from notepadequalequal.fileio import retrieve_file
+
 from auratext.scripts.def_path import resource
 
 newTerminalIcon = resource(r"../media/terminal/new.svg")
@@ -179,7 +182,7 @@ class TerminalEmulator(QWidget):
             print("Unsupported operating system")
             sys.exit(1)
         local_app_data = os.path.join(local_app_data, "AuraText")
-        cpath = open(f"{local_app_data}/data/CPath_Project.txt", "r+").read()
+        cpath = retrieve_file(f"{local_app_data}/data/CPath_Project.txt").strip()
 
         self.start_powershell(index, project_path=cpath)
 

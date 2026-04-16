@@ -9,6 +9,9 @@ from PyQt6.QtWidgets import (QListWidget, QVBoxLayout, QWidget, QDockWidget, QPu
                              QHBoxLayout, QFrame, QScrollArea, QSizePolicy)
 import platform
 
+sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'notepadequalequal'))
+from notepadequalequal.fileio import retrieve_file
+
 
 if platform.system() == "Windows":
     local_app_data = os.getenv('LOCALAPPDATA')
@@ -20,7 +23,7 @@ else:
     print("Unsupported operating system")
     sys.exit(1)
 local_app_data = os.path.join(local_app_data, "AuraText")
-cpath = open(f"{local_app_data}/data/CPath_Project.txt", "r+").read()
+cpath = retrieve_file(f"{local_app_data}/data/CPath_Project.txt").strip()
 
 # Load theme
 with open(f"{local_app_data}/data/theme.json", "r") as f:

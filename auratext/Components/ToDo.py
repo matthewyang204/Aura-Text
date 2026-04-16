@@ -3,9 +3,12 @@ import os
 import platform
 import sys
 
+sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'notepadequalequal'))
+
 from PyQt6.QtWidgets import (
     QVBoxLayout, QListWidget, QPushButton, QHBoxLayout, QMessageBox, QDialog, QLineEdit
 )
+from notepadequalequal.fileio import retrieve_file
 
 if platform.system() == "Windows":
     local_app_data = os.getenv('LOCALAPPDATA')
@@ -17,8 +20,7 @@ else:
     print("Unsupported operating system")
     sys.exit(1)
 local_app_data = os.path.join(local_app_data, "AuraText")
-cpath = open(f"{local_app_data}/data/CPath_Project.txt", "r+").read()
-
+cpath = retrieve_file(f"{local_app_data}/data/CPath_Project.txt").strip()
 
 def check_folder_exists(folder_path):
     """Check if a folder exists in the specified directory."""

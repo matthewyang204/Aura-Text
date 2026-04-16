@@ -12,6 +12,9 @@ from PyQt6.QtGui import QPixmap
 from PyQt6.QtWidgets import QLabel, QDockWidget, QVBoxLayout, QTextEdit, QTextBrowser
 import platform
 
+sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'notepadequalequal'))
+from notepadequalequal.fileio import retrieve_file
+
 GITHUB_CSS = """
 <style>
 body {
@@ -171,11 +174,9 @@ class CodeSnippets:
         ext = file_dir.split(".")[-1]
         if file_dir:
             try:
-                f = open(file_dir, "r", encoding='utf-8', errors='ignore')
                 try:
-                    filedata = f.read()
+                    filedata = retrieve_file(file_dir)
                     editor.append(filedata)
-                    f.close()
                 except UnicodeDecodeError:
                     messagebox.showerror("Wrong Filetype!", "This file type is not supported!")
             except FileNotFoundError:
@@ -397,17 +398,12 @@ def open_document(self):
             messagebox.showerror("Wrong Filetype!", "This file type is not supported!")
 
         try:
-            f = open(file_dir, "r", encoding='utf-8', errors='ignore')
-            c = open(cfile_path, "r+")
             try:
-                filedata = f.read()
+                filedata = retrieve_file(file_dir)
                 if ext == "md":
                     self.markdown_open(filedata, file_dir)
                 self.new_document(title=os.path.basename(file_dir), file_path=file_dir)
                 self.current_editor.insert(filedata)
-                c.truncate(0)
-                c.write(file_dir)
-                f.close()
             except UnicodeDecodeError:
                 messagebox.showerror("Wrong Filetype!", "This file type is not supported!")
         except FileNotFoundError:
