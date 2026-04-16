@@ -78,14 +78,12 @@ local_app_data = os.path.join(local_app_data, "AuraText")
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
 try:
-    with open(f"{local_app_data}/data/CPath_Project.txt", "r+") as _cpath_file:
-        cpath = _cpath_file.read().strip()
+    cpath = retrieve_file(f"{local_app_data}/data/CPath_Project.txt").strip()
 except (FileNotFoundError, OSError):
     cpath = ""
 
 try:
-    with open(f"{local_app_data}/data/CPath_File.txt", "r+") as _cfile_file:
-        cfile = _cfile_file.read().strip()
+    cfile = retrieve_file(f"{local_app_data}/data/CPath_File.txt").strip()
 except (FileNotFoundError, OSError):
     cfile = ""
 
@@ -1683,32 +1681,29 @@ class Window(QMainWindow):
         image_extensions = ["png", "jpg", "jpeg", "ico", "gif", "bmp"]
         ext = path.split(".")[-1]
 
-        if ext.lower() == "pdf":
-            if self.open_pdf_in_app(path):
-                pdf_handler = getattr(self, "_latex_pdf_open_handler", None)
-                if callable(pdf_handler):
-                    pdf_handler(path)
-                return
+        # if ext.lower() == "pdf":
+        #     if self.open_pdf_in_app(path):
+        #         pdf_handler = getattr(self, "_latex_pdf_open_handler", None)
+        #         if callable(pdf_handler):
+        #             pdf_handler(path)
+        #         return
 
-        if ext.lower() == "db":
-            self.db_viewer = DBViewer(path)
-            self.tab_widget.addTab(self.db_viewer, os.path.basename(path))
-            self.tab_widget.setCurrentWidget(self.db_viewer)
-            return
+        # if ext.lower() == "db":
+        #     self.db_viewer = DBViewer(path)
+        #     self.tab_widget.addTab(self.db_viewer, os.path.basename(path))
+        #     self.tab_widget.setCurrentWidget(self.db_viewer)
+        #     return
 
-        if ext.lower() in image_extensions:
-            ModuleFile.add_image_tab(self, self.tab_widget, path, os.path.basename(path))
-            return
+        # if ext.lower() in image_extensions:
+        #     ModuleFile.add_image_tab(self, self.tab_widget, path, os.path.basename(path))
+        #     return
 
         try:
-            f = open(path, "r", encoding='utf-8', errors='ignore')
-            filedata = f.read()
-            f.close()
+            filedata = retrieve_file(path)
             self.new_document(title=os.path.basename(path), file_path=path)
             self.current_editor.insert(filedata)
             if ext.lower() == "md":
                 self.markdown_open(filedata, path)
-
         except UnicodeDecodeError:
             messagebox = QMessageBox()
             messagebox.setWindowTitle("Wrong Filetype!"), messagebox.setText(
@@ -2581,12 +2576,12 @@ class Window(QMainWindow):
 
     def open_last_file(self, title=os.path.basename(cfile)):
         try:
-            file = open(cfile, "r+")
+            # file = open(cfile, "r+")
             container = self.create_editor(cfile)
             self.current_editor = self.text_editor
             self.current_editor.textChanged.connect(self.updateStatusBar)
             self.current_editor.cursorPositionChanged.connect(self.updateStatusBar)
-            text = file.read()
+            text = retrieve_file(cfile)
             self.editors.append(self.current_editor)
             self.current_editor.setText(text)
             self.tab_widget.addTab(container, title)
