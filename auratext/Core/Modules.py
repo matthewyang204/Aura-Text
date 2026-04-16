@@ -144,16 +144,18 @@ emsg_zerodivision = [
 
 if platform.system() == "Windows":
     local_app_data = os.getenv('LOCALAPPDATA')
+    newline = "\r\n"
 elif platform.system() == "Linux":
     local_app_data = os.path.expanduser("~/.config")
+    newline = "\n"
 elif platform.system() == "Darwin":
     local_app_data = os.path.expanduser("~/Library/Application Support")
+    newline = "\n"
 else:
     print("Unsupported operating system")
     sys.exit(1)
 local_app_data = os.path.join(local_app_data, "AuraText")
 cfile_path = f"{local_app_data}/data/Cpath_File.txt"
-
 
 class CodeSnippets:
     def __init__(self):
@@ -342,10 +344,10 @@ def save_document(self, force_dialog=False):
         else:
             name = existing_path
 
-        file = open(name, "w", encoding="utf-8", errors="ignore")
+        file = open(name, "w", encoding="utf-8", newline=newline)
         text = self.current_editor.text()
         file.write(text)
-        title = os.path.basename(file.name) + "   ~ Aura Text"
+        title = os.path.basename(file.name) + " ~ Aura Text"
         self.tab_widget.setTabText(active_tab_index, os.path.basename(file.name))
         self.setWindowTitle(title)
         if hasattr(self, "tab_file_paths"):
