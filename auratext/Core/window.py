@@ -56,9 +56,12 @@ from ..Components.FunctionGrid import FunctionGridDialog
 from .MiniMapWidget import MiniMapWidget
 from .svg_icon_manager import SVGIconManager
 
+sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'notepadequalequal'))
+
 from .AuraText import CodeEditor
 from auratext.Components.TabWidget import TabWidget
 from .plugin_interface import Plugin
+from notepadequalequal.fileio import retrieve_file
 
 if platform.system() == "Windows":
     local_app_data = os.getenv('LOCALAPPDATA')
