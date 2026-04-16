@@ -15,7 +15,8 @@ from PyQt6.QtWidgets import (
     QWidget,
 )
 
-sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'notepadequalequal'))
+from auratext.Misc.import_res import notepadequalequalComponentImportPathAppend
+sys.path.append(notepadequalequalComponentImportPathAppend)
 from notepadequalequal.fileio import retrieve_file
 
 from auratext.scripts.def_path import resource

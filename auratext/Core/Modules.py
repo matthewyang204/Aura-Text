@@ -12,7 +12,8 @@ from PyQt6.QtGui import QPixmap
 from PyQt6.QtWidgets import QLabel, QDockWidget, QMessageBox, QVBoxLayout, QTextEdit, QTextBrowser
 import platform
 
-sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'notepadequalequal'))
+from auratext.Misc.import_res import notepadequalequalComponentImportPathAppend
+sys.path.append(notepadequalequalComponentImportPathAppend)
 from notepadequalequal.fileio import retrieve_file
 
 GITHUB_CSS = """

@@ -9,9 +9,9 @@ from PyQt6.QtWidgets import (QListWidget, QVBoxLayout, QWidget, QDockWidget, QPu
                              QHBoxLayout, QFrame, QScrollArea, QSizePolicy)
 import platform
 
-sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'notepadequalequal'))
+from auratext.Misc.import_res import notepadequalequalComponentImportPathAppend
+sys.path.append(notepadequalequalComponentImportPathAppend)
 from notepadequalequal.fileio import retrieve_file
-
 
 if platform.system() == "Windows":
     local_app_data = os.getenv('LOCALAPPDATA')

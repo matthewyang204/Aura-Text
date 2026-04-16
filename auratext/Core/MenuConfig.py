@@ -7,7 +7,8 @@ import platform
 from PyQt6.QtWidgets import QMenu
 from PyQt6.QtGui import QAction, QIcon
 
-sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'notepadequalequal'))
+from auratext.Misc.import_res import notepadequalequalComponentImportPathAppend
+sys.path.append(notepadequalequalComponentImportPathAppend)
 
 from .plugin_interface import MenuPluginInterface
 from notepadequalequal.fileio import retrieve_file

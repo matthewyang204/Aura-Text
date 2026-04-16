@@ -56,7 +56,8 @@ from ..Components.FunctionGrid import FunctionGridDialog
 from .MiniMapWidget import MiniMapWidget
 from .svg_icon_manager import SVGIconManager
 
-sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'notepadequalequal'))
+from auratext.Misc.import_res import notepadequalequalComponentImportPathAppend
+sys.path.append(notepadequalequalComponentImportPathAppend)
 
 from .AuraText import CodeEditor
 from auratext.Components.TabWidget import TabWidget
