@@ -23,7 +23,7 @@ else:
     sys.exit(1)
 local_app_data = os.path.join(local_app_data, "AuraText")
 try:
-    cpath = retrieve_file(_cpath_file).strip()
+    cpath = retrieve_file(f"{local_app_data}/data/CPath_Project.txt").strip()
 except (FileNotFoundError, OSError):
     cpath = ""
 
