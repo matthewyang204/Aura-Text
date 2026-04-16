@@ -9,7 +9,7 @@ import requests
 import pyperclip
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QPixmap
-from PyQt6.QtWidgets import QLabel, QDockWidget, QVBoxLayout, QTextEdit, QTextBrowser
+from PyQt6.QtWidgets import QLabel, QDockWidget, QMessageBox, QVBoxLayout, QTextEdit, QTextBrowser
 import platform
 
 sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'notepadequalequal'))
@@ -413,7 +413,11 @@ def open_document(self):
 def code_formatting(self):
     import autopep8
 
-    og_code = str(self.current_editor.text())
+    try:
+        og_code = str(self.current_editor.text())
+    except AttributeError:
+        QMessageBox.warning(self, "Not An Editor", "The current widget is not an editor.")
+        return
     if og_code != "":
         options = {
             "aggressive": 2,
