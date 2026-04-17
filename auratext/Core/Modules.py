@@ -194,7 +194,7 @@ class CodeSnippets:
                     filedata = retrieve_file(file_dir)
                     editor.append(filedata)
                 except UnicodeDecodeError:
-                    messagebox.showerror("Wrong Filetype!", "This file type is not supported!")
+                    QMessageBox.warning(self, "Wrong Filetype", "This file type is not supported")
             except FileNotFoundError:
                 return
 
@@ -205,10 +205,7 @@ def rightSpeak(text):
         engine.say(text)
         engine.runAndWait()
     else:
-        messagebox.showerror(
-            "Text not found",
-            "Please enter something in the text box to convert it to speech.",
-        )
+        QMessageBox.warning(self, "Text not found", "Please enter something in the text box to convert it to speech.")
 
 
 def encypt(self):
@@ -219,10 +216,7 @@ def encypt(self):
         base64_encoded = base64_bytes.decode("ascii") + "   "
         self.replaceSelectedText(base64_encoded)
     else:
-        messagebox.showerror(
-            "No Selection",
-            "Please select something to encrypt.",
-        )
+        QMessageBox.warning(self, "No Selection", "Please select something to encrypt.")
 
 
 def decode(self):
@@ -233,10 +227,7 @@ def decode(self):
         sample_string = sample_string_bytes.decode("ascii") + "   "
         self.replaceSelectedText(sample_string)
     else:
-        messagebox.showerror(
-            "No Selection",
-            "Please select a basse64 string to decrypt.",
-        )
+        QMessageBox.warning(self, "No Selection", "Please select a base64 string to decrypt.")
 
 
 def markdown_new(self):
@@ -282,7 +273,7 @@ def markdown_open(self, path_data, file_path=None):
         self.current_editor.textChanged.connect(update)
         update()
     except AttributeError:
-        messagebox.showerror("Not an Editor", "The current widget is not an editor, or no editor is open. Please open one to continue.")
+        QMessageBox.warning(self, "Not an Editor", "The current widget is not an editor, or no editor is open. Please open one to continue.")
 
 
 def calculate(self):
@@ -291,11 +282,11 @@ def calculate(self):
         try:
             res = int(eval(stringg))
             res = str(res)
-            messagebox.showinfo("Result", res)
+            QMessageBox.information(self, "Result", res)
         except ZeroDivisionError:
-            messagebox.showerror("Zero Division Error", random.choice(emsg_zerodivision))
+            QMessageBox.warning(self, "Zero Division Error", random.choice(emsg_zerodivision))
     except TypeError and NameError:
-        messagebox.showerror(
+        QMessageBox.warning(self, "Invalid Expression", "Either the expression you entered is not valid, or you have not entered one. Please enter a valid expression to continue.")
             "Invalid Expression",
             "Either the expression you entered is not valid, or you have not entered one. Please enter a valid expression to continue.",
         )
@@ -307,10 +298,10 @@ def pastebin(self):
         data = {"api_dev_key": api_key_pastebin, "api_option": "paste", "api_paste_code": text_pb}
         response = (requests.post("https://pastebin.com/api/api_post.php", data=data)).text
         text = "Your Pastebin link has been copied to the clipboard!"
-        messagebox.showinfo("Success!", text)
+        QMessageBox.information(self, "Success!", text)
         pyperclip.copy(response)
     else:
-        messagebox.showerror("No Code Found!", random.choice(emsg_nocode_list))
+        QMessageBox.warning(self, "No Code Found!", random.choice(emsg_nocode_list))
 
 
 def summary(self):
@@ -328,7 +319,7 @@ def summary(self):
             + "Total Word Count: "
             + "word_count"
     )
-    messagebox.showinfo("Summary", text)
+    QMessageBox.information(self, "Summary", text)
 
 
 def save_document(self, force_dialog=False):
@@ -407,7 +398,7 @@ def open_document(self):
                 return
 
         except UnicodeDecodeError:
-            messagebox.showerror("Wrong Filetype!", "This file type is not supported!")
+            QMessageBox.warning(self, "Wrong Filetype", "This file type is not supported")
 
         try:
             try:
@@ -417,7 +408,7 @@ def open_document(self):
                 self.new_document(title=os.path.basename(file_dir), file_path=file_dir)
                 self.current_editor.insert(filedata)
             except UnicodeDecodeError:
-                messagebox.showerror("Wrong Filetype!", "This file type is not supported!")
+                QMessageBox.warning(self, "Wrong Filetype", "This file type is not supported!")
         except FileNotFoundError:
             return
 
@@ -439,4 +430,4 @@ def code_formatting(self):
         self.custom_new_document(title="Code Formatting")
         self.current_editor.insert(clean_code)
     else:
-        messagebox.showerror("Error: No Code Found!", random.choice(emsg_nocode_list))
+        QMessageBox.warning(self, "Error: No Code Found!", random.choice(emsg_nocode_list))
