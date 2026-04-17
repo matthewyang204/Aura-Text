@@ -18,6 +18,7 @@ from PyQt6.QtWidgets import (
     QListWidget,
     QLabel,
     QDialog)
+from PyQt6.QtGui import QFont
 
 from auratext.Misc.import_res import notepadequalequalComponentImportPathAppend
 sys.path.append(notepadequalequalComponentImportPathAppend)
@@ -83,3 +84,19 @@ class BoilerPlate(QDialog):
             self.current_editor.append(file_contents)
         except Exception as e:
             print(f"Error reading file: {e}")
+
+def get_font_for_platform(size=12, plain=True):
+    system_name = platform.system()
+    if system_name == "Windows":
+        if plain == True:
+            return QFont("Consolas", size)
+        else:
+            return QFont("Arial", size)
+    elif system_name == "Darwin":
+        if plain:
+            return QFont("Menlo", size)
+        else:
+            return QFont("Helvetica", size)
+    else:
+        print("WARNING: No non-plain font is available on your platform.")
+        return QFont("DejaVu Sans Mono", size)
