@@ -1,7 +1,6 @@
 import base64
 import os
 import random
-from tkinter import messagebox, filedialog
 import markdown
 import sys
 import pyttsx3
