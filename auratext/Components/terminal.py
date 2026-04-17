@@ -17,6 +17,7 @@ from art import text2art
 from pyjokes import pyjokes
 
 from auratext.Components.powershell import find_powershell_core as find_shellPath
+from auratext.Misc.boilerplates import get_font_for_platform
 
 now = datetime.now()
 
@@ -89,7 +90,7 @@ class AuraTextTerminalWidget(QWidget):
         self.strcmds = str(self.commands)
 
         self.script_edit = QLineEdit()
-        self.script_edit.setFont(QFont("Consolas"))
+        self.script_edit.setFont(get_font_for_platform(size=10, plain=True))
         self.setStyleSheet("QWidget {background-color: #FFFFFF;}")
         self.script_edit.setStyleSheet(
             "QLineEdit {"
@@ -115,7 +116,7 @@ class AuraTextTerminalWidget(QWidget):
         self.terminal_history_button.clicked.connect(self.terminal_history_run)
 
         self.text = QTextEdit()
-        self.text.setFont(QFont("Consolas"))
+        self.text.setFont(get_font_for_platform(size=10, plain=True))
         self.text.setReadOnly(True)
         self.text.setStyleSheet("QTextEdit {background-color: #000000;color: white; border:none;}")
 

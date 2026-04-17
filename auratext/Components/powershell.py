@@ -15,6 +15,7 @@ from PyQt6.QtWidgets import (
     QWidget,
 )
 
+from auratext.Misc.boilerplates import get_font_for_platform
 from auratext.Misc.import_res import notepadequalequalComponentImportPathAppend
 sys.path.append(notepadequalequalComponentImportPathAppend)
 from notepadequalequal.fileio import retrieve_file
@@ -108,7 +109,7 @@ class TerminalEmulator(QWidget):
             "Courier New",
             "Monospace",
         ]
-        font = QFont(font_families[0], 10)
+        font = get_font_for_platform(size=10, plain=True)
         font.setStyleHint(QFont.StyleHint.Monospace)
         self.terminal.setFont(font)
 
