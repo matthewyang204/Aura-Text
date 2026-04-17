@@ -8,10 +8,9 @@ from PyQt6.QtGui import QFont, QPixmap, QCursor
 from PyQt6.QtWidgets import (QPushButton, QWidget, QVBoxLayout, QLabel, 
                              QHBoxLayout, QScrollArea, QFrame)
 
-
+from auratext.Misc.boilerplates import get_font_for_platform
 if TYPE_CHECKING:
     from auratext.Core.window import Window
-
 
 class ActionButton(QPushButton):
     """VS Code-style action button"""
@@ -172,11 +171,11 @@ class WelcomeWidget(QWidget):
         
         # Title Section
         title_label = QLabel("Aura Text")
-        title_label.setFont(QFont("Segoe UI", 48, QFont.Weight.Light))
+        title_label.setFont(get_font_for_platform(size=48, plain=False))
         title_label.setStyleSheet("color: #cccccc;")
         
         subtitle_label = QLabel("Like any text editor. Unlike any text editor")
-        subtitle_label.setFont(QFont("Segoe UI", 16))
+        subtitle_label.setFont(get_font_for_platform(size=16, plain=False))
         subtitle_label.setStyleSheet("color: #888888; margin-bottom: 20px;")
         
         main_layout.addWidget(title_label)
@@ -191,7 +190,7 @@ class WelcomeWidget(QWidget):
         start_column.setSpacing(15)
         
         start_header = QLabel("Start")
-        start_header.setFont(QFont("Segoe UI", 14, QFont.Weight.Bold))
+        start_header.setFont(get_font_for_platform(size=14, plain=False))
         start_header.setStyleSheet("color: #cccccc; margin-bottom: 5px;")
         start_column.addWidget(start_header)
         
@@ -232,7 +231,7 @@ class WelcomeWidget(QWidget):
         walkthrough_column.setSpacing(15)
         
         walkthrough_header = QLabel("Walkthroughs")
-        walkthrough_header.setFont(QFont("Segoe UI", 14, QFont.Weight.Bold))
+        walkthrough_header.setFont(get_font_for_platform(size=14, plain=False))
         walkthrough_header.setStyleSheet("color: #cccccc; margin-bottom: 5px;")
         walkthrough_column.addWidget(walkthrough_header)
         
@@ -288,7 +287,7 @@ class WelcomeWidget(QWidget):
         
         # Recent Projects Section
         recent_header = QLabel("Recent")
-        recent_header.setFont(QFont("Segoe UI", 14, QFont.Weight.Bold))
+        recent_header.setFont(get_font_for_platform(size=14, plain=False))
         recent_header.setStyleSheet("color: #cccccc; margin-top: 10px; margin-bottom: 5px;")
         main_layout.addWidget(recent_header)
         
