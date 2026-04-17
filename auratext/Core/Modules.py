@@ -357,11 +357,8 @@ def save_document(self, force_dialog=False):
         file.close()
         return
     except FileNotFoundError:
-        messagebox.showerror(
-            "Don't wanna save your file?",
-            "You can run, but you can't hide from your unsaved changes."
-            " Please come back and save your work before it's too late!",
-        )
+        QMessageBox.warning(self, "File Not Found", "The file you are trying to save does not exist.")
+    
 
 
 def add_image_tab(self, tab, image_path, tab_name):
