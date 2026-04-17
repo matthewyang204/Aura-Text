@@ -194,7 +194,7 @@ class CodeSnippets:
                     filedata = retrieve_file(file_dir)
                     editor.append(filedata)
                 except UnicodeDecodeError:
-                    QMessageBox.warning(self, "Wrong Filetype", "This file type is not supported")
+                    QMessageBox.warning(None, "Wrong Filetype", "This file type is not supported")
             except FileNotFoundError:
                 return
 
@@ -205,7 +205,7 @@ def rightSpeak(text):
         engine.say(text)
         engine.runAndWait()
     else:
-        QMessageBox.warning(self, "Text not found", "Please enter something in the text box to convert it to speech.")
+        QMessageBox.warning(None, "Text not found", "Please enter something in the text box to convert it to speech.")
 
 
 def encypt(self):
@@ -287,9 +287,6 @@ def calculate(self):
             QMessageBox.warning(self, "Zero Division Error", random.choice(emsg_zerodivision))
     except TypeError and NameError:
         QMessageBox.warning(self, "Invalid Expression", "Either the expression you entered is not valid, or you have not entered one. Please enter a valid expression to continue.")
-            "Invalid Expression",
-            "Either the expression you entered is not valid, or you have not entered one. Please enter a valid expression to continue.",
-        )
 
 
 def pastebin(self):
@@ -358,7 +355,7 @@ def save_document(self, force_dialog=False):
         return
     except FileNotFoundError:
         QMessageBox.warning(self, "File Not Found", "The file you are trying to save does not exist.")
-    
+
 
 
 def add_image_tab(self, tab, image_path, tab_name):
