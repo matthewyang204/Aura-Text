@@ -63,6 +63,7 @@ from .AuraText import CodeEditor
 from auratext.Components.TabWidget import TabWidget
 from .plugin_interface import Plugin
 from notepadequalequal.fileio import retrieve_file
+from auratext.Misc.boilerplates import get_font_for_platform
 
 if platform.system() == "Windows":
     local_app_data = os.getenv('LOCALAPPDATA')
@@ -1136,7 +1137,7 @@ class Window(QMainWindow):
             self.dock.setWidget(self.explorer_tree_view)
             self.addDockWidget(Qt.DockWidgetArea.RightDockWidgetArea, self.dock)
 
-            self.explorer_tree_view.setFont(QFont("Consolas"))
+            self.explorer_tree_view.setFont(get_font_for_platform(plain=True))
             self.explorer_tree_view.setColumnHidden(1, True)  # File type column
             self.explorer_tree_view.setColumnHidden(2, True)  # Size column
             self.explorer_tree_view.setColumnHidden(3, True)  # Date modified column
@@ -2497,7 +2498,7 @@ class Window(QMainWindow):
     def notes(self):
         note_dock = QDockWidget("Notes", self)
         note_widget = QPlainTextEdit(note_dock)
-        note_widget.setFont(QFont(self._themes["font"]))
+        note_widget.setFont(get_font_for_platform(plain=True))
         note_dock.setWidget(note_widget)
         self.addDockWidget(Qt.DockWidgetArea.RightDockWidgetArea, note_dock)
         note_dock.show()
