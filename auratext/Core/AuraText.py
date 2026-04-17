@@ -10,6 +10,7 @@ from . import Lexers
 from . import Modules as ModuleFile
 from .autocomplete_engine import PythonAutocompleteEngine
 
+from auratext.Misc.boilerplates import get_font_for_platform
 if TYPE_CHECKING:
     from .window import Window
 
@@ -107,7 +108,7 @@ class CodeEditor(QsciScintilla):
         lexer.setColor(QColor("#3ba800"), lexer.SingleQuotedString)
         lexer.setColor(QColor("#3ba800"), lexer.DoubleQuotedString)
         lexer.setColor(QColor("#FFFFFF"), lexer.Default)
-        lexer.setFont(QFont(window._themes["font"]))
+        lexer.setFont(get_font_for_platform())
 
         self.setTabWidth(4)
         self.setMarginLineNumbers(1, True)
