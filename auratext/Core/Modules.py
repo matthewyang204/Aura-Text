@@ -9,7 +9,7 @@ import requests
 import pyperclip
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QPixmap
-from PyQt6.QtWidgets import QLabel, QDockWidget, QMessageBox, QVBoxLayout, QTextEdit, QTextBrowser
+from PyQt6.QtWidgets import QFileDialog, QLabel, QDockWidget, QMessageBox, QVBoxLayout, QTextEdit, QTextBrowser
 import platform
 
 from auratext.Misc.import_res import notepadequalequalComponentImportPathAppend
@@ -174,15 +174,19 @@ class CodeSnippets:
     @staticmethod
     def snippets_gen(editor):
         snippet_text = editor.selectedText()
-        name = str(filedialog.asksaveasfilename(title="Select file", defaultextension=".py"))
+        filename, ok = QFileDialog.getSaveFileName(None, "Select file", "", "Python Files (*.py);;All Files (*)")[0]
+        if not ok:
+            return
+        name = str(filename)
         file = open(name, "w")
         file.write(snippet_text)
 
     @staticmethod
     def snippets_open(editor):
-        file_dir = filedialog.askopenfilename(
-            title="Select file",
-        )
+        filedirPath, ok = QFileDialog.getOpenFileName(None, "Select file", "", "All Files (*)")
+        if not ok:
+            return
+        file_dir = filedirPath
         ext = file_dir.split(".")[-1]
         if file_dir:
             try:
@@ -340,13 +344,10 @@ def save_document(self, force_dialog=False):
             suggested_name = os.path.basename(existing_path) if existing_path else os.path.basename(current_tab_name)
             if not suggested_name:
                 suggested_name = "untitled.py"
-            name = str(
-                filedialog.asksaveasfilename(
-                    title="Select file",
-                    defaultextension=".py",
-                    initialfile=suggested_name,
-                )
-            )
+            filename, ok = QFileDialog.getSaveFileName(None, "Select file", "", "Python Files (*.py);;All Files (*)", initialFile=suggested_name)
+            if not ok:
+                return
+            name = filename
             if not name:
                 return
         else:
@@ -382,9 +383,10 @@ def add_image_tab(self, tab, image_path, tab_name):
 
 
 def open_document(self):
-    file_dir = filedialog.askopenfilename(
-        title="Select file",
-    )
+    file_dir_path, ok = QFileDialog.getOpenFileName(None, "Select file", "", "All Files (*)")
+    if not ok:
+        return
+    file_dir = file_dir_path
     ext = file_dir.split(".")[-1].lower()
     image_extensions = ["png", "jpg", "jpeg", "ico", "gif", "bmp"]
 
