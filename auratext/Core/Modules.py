@@ -9,8 +9,12 @@ import requests
 import pyperclip
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QPixmap
-from PyQt6.QtWidgets import QLabel, QDockWidget, QVBoxLayout, QTextEdit, QTextBrowser
+from PyQt6.QtWidgets import QLabel, QDockWidget, QMessageBox, QVBoxLayout, QTextEdit, QTextBrowser
 import platform
+
+from auratext.Misc.import_res import notepadequalequalComponentImportPathAppend
+sys.path.append(notepadequalequalComponentImportPathAppend)
+from notepadequalequal.fileio import retrieve_file
 
 GITHUB_CSS = """
 <style>
@@ -114,43 +118,54 @@ a:hover {
 
 api_key_pastebin = "_L_ZkBp7K3aZMY7z4ombPIztLxITOOpD"
 
-emsg_save_list = [
-    "Hey there! Hold on a sec... Are you really sure you wanna quit without saving? I mean, you put a lot of effort into that file. Don't you wanna give it a chance to live its best life?",
-    "Warning: Unsaved work detected! If you leave now, you'll make the computer cry. Do you really want to make the computer cry?",
-    "Whoa there! You're about to exit without saving. Are you sure you want to risk angering the computer gods? Save your work, mortal!",
-    "Stop! Hammer time! You can't touch this app until you save your work",
-    "Whoa there! Hold your horses, partner! You can't just ride off into the sunset without saving your work. Y'all gotta hit that save button before you hit the road.",
-    "Are you sure you want to quit without saving? Your file is like a newborn baby - it needs to be saved before it can make its way in the world!",
-    "Looks like you're trying to exit without saving. That's like leaving the grocery store without paying.",
-    "Did you forget to save? Your work is about to disappear like a magician's bunny.",
-]
+emsg_save = "The current file is not saved. Changes may be lost if they are not saved. Do you want to save before exiting?"
+emsg_save_list = []
+#     "Hey there! Hold on a sec... Are you really sure you wanna quit without saving? I mean, you put a lot of effort into that file. Don't you wanna give it a chance to live its best life?",
+#     "Warning: Unsaved work detected! If you leave now, you'll make the computer cry. Do you really want to make the computer cry?",
+#     "Whoa there! You're about to exit without saving. Are you sure you want to risk angering the computer gods? Save your work, mortal!",
+#     "Stop! Hammer time! You can't touch this app until you save your work",
+#     "Whoa there! Hold your horses, partner! You can't just ride off into the sunset without saving your work. Y'all gotta hit that save button before you hit the road.",
+#     "Are you sure you want to quit without saving? Your file is like a newborn baby - it needs to be saved before it can make its way in the world!",
+#     "Looks like you're trying to exit without saving. That's like leaving the grocery store without paying.",
+#     "Did you forget to save? Your work is about to disappear like a magician's bunny.",
+# ]
+for i in range(8):
+    emsg_save_list.append(emsg_save)
 
-emsg_nocode_list = [
-    "Whoa, slow down! It looks like you're trying to use a feature that requires some code to be written. You can't just wing it like a chicken trying to fly without feathers.",
-    "It looks like your keyboard is on vacation. Please wake it up and start typing some code so we can work our magic.",
-    "Whoops! It seems like you're trying to use a feature that requires some code. Don't worry, I won't tell anyone that you were trying to cheat your way to success. Just write some code and we'll be on our way!",
-]
+emsg_nocode = "The current file is empty or contains no code. Please write some code to use this feature."
+emsg_nocode_list = []
+#     "Whoa, slow down! It looks like you're trying to use a feature that requires some code to be written. You can't just wing it like a chicken trying to fly without feathers.",
+#     "It looks like your keyboard is on vacation. Please wake it up and start typing some code so we can work our magic.",
+#     "Whoops! It seems like you're trying to use a feature that requires some code. Don't worry, I won't tell anyone that you were trying to cheat your way to success. Just write some code and we'll be on our way!",
+# ]
+for i in range(3):
+    emsg_nocode_list.append(emsg_nocode)
 
-emsg_zerodivision = [
-    "Error 404: Reality not found. You can't divide by zero, that's just crazy talk.",
-    "Congratulations! You broke math. Dividing by zero is undefined.",
-    "Warning: Attempting to divide by zero may cause a rift in the space-time continuum. Please don't.",
-    "Sorry, can't divide by zero. It's like trying to split an atom with a spoon.",
-    "Whoops! Looks like you divided by the imaginary number i...nfinity.",
-]
+emsg_zerodivision_str = "This operation is apparently attempting to divide by zero. This is infinity, which is mathematically undefined. Please change your operation to be mathematically valid to continue."
+emsg_zerodivision = []
+#     "Error 404: Reality not found. You can't divide by zero, that's just crazy talk.",
+#     "Congratulations! You broke math. Dividing by zero is undefined.",
+#     "Warning: Attempting to divide by zero may cause a rift in the space-time continuum. Please don't.",
+#     "Sorry, can't divide by zero. It's like trying to split an atom with a spoon.",
+#     "Whoops! Looks like you divided by the imaginary number i...nfinity.",
+# ]
+for i in range(5):
+    emsg_zerodivision.append(emsg_zerodivision_str)
 
 if platform.system() == "Windows":
     local_app_data = os.getenv('LOCALAPPDATA')
+    newline = "\r\n"
 elif platform.system() == "Linux":
     local_app_data = os.path.expanduser("~/.config")
+    newline = "\n"
 elif platform.system() == "Darwin":
     local_app_data = os.path.expanduser("~/Library/Application Support")
+    newline = "\n"
 else:
     print("Unsupported operating system")
     sys.exit(1)
 local_app_data = os.path.join(local_app_data, "AuraText")
 cfile_path = f"{local_app_data}/data/Cpath_File.txt"
-
 
 class CodeSnippets:
     def __init__(self):
@@ -171,11 +186,9 @@ class CodeSnippets:
         ext = file_dir.split(".")[-1]
         if file_dir:
             try:
-                f = open(file_dir, "r", encoding='utf-8', errors='ignore')
                 try:
-                    filedata = f.read()
+                    filedata = retrieve_file(file_dir)
                     editor.append(filedata)
-                    f.close()
                 except UnicodeDecodeError:
                     messagebox.showerror("Wrong Filetype!", "This file type is not supported!")
             except FileNotFoundError:
@@ -189,9 +202,8 @@ def rightSpeak(text):
         engine.runAndWait()
     else:
         messagebox.showerror(
-            "Text not found!",
-            "Did you forget to bring your words to the party? Don't worry, just type something "
-            "and let's get this conversation started!",
+            "Text not found",
+            "Please enter something in the text box to convert it to speech.",
         )
 
 
@@ -204,8 +216,8 @@ def encypt(self):
         self.replaceSelectedText(base64_encoded)
     else:
         messagebox.showerror(
-            "No Selection!",
-            "Looks like you're taking the non-selective approach today. Select any text to encrypt.",
+            "No Selection",
+            "Please select something to encrypt.",
         )
 
 
@@ -218,8 +230,8 @@ def decode(self):
         self.replaceSelectedText(sample_string)
     else:
         messagebox.showerror(
-            "No Selection!",
-            "Looks like you're taking the non-selective approach today. Select any text to decrypt.",
+            "No Selection",
+            "Please select a basse64 string to decrypt.",
         )
 
 
@@ -266,7 +278,7 @@ def markdown_open(self, path_data, file_path=None):
         self.current_editor.textChanged.connect(update)
         update()
     except AttributeError:
-        messagebox.showerror("Uh Oh!", "An unknown error is stopping Aura Text from rendering this file. Please try again later. If it's still not fixed, then please open an Issue in the repo")
+        messagebox.showerror("Not an Editor", "The current widget is not an editor, or no editor is open. Please open one to continue.")
 
 
 def calculate(self):
@@ -277,12 +289,11 @@ def calculate(self):
             res = str(res)
             messagebox.showinfo("Result", res)
         except ZeroDivisionError:
-            messagebox.showerror("Can't divide by zero!", random.choice(emsg_zerodivision))
+            messagebox.showerror("Zero Division Error", random.choice(emsg_zerodivision))
     except TypeError and NameError:
         messagebox.showerror(
-            "Numeric Expression Where??",
-            "Oops! Looks like you forgot to select a numeric expression. "
-            "Are you trying to give me a break? Come on, give me something to calculate here!",
+            "Invalid Expression",
+            "Either the expression you entered is not valid, or you have not entered one. Please enter a valid expression to continue.",
         )
 
 
@@ -341,10 +352,10 @@ def save_document(self, force_dialog=False):
         else:
             name = existing_path
 
-        file = open(name, "w", encoding="utf-8", errors="ignore")
+        file = open(name, "w", encoding="utf-8", newline=newline)
         text = self.current_editor.text()
         file.write(text)
-        title = os.path.basename(file.name) + "   ~ Aura Text"
+        title = os.path.basename(file.name) + " ~ Aura Text"
         self.tab_widget.setTabText(active_tab_index, os.path.basename(file.name))
         self.setWindowTitle(title)
         if hasattr(self, "tab_file_paths"):
@@ -397,17 +408,12 @@ def open_document(self):
             messagebox.showerror("Wrong Filetype!", "This file type is not supported!")
 
         try:
-            f = open(file_dir, "r", encoding='utf-8', errors='ignore')
-            c = open(cfile_path, "r+")
             try:
-                filedata = f.read()
+                filedata = retrieve_file(file_dir)
                 if ext == "md":
                     self.markdown_open(filedata, file_dir)
                 self.new_document(title=os.path.basename(file_dir), file_path=file_dir)
                 self.current_editor.insert(filedata)
-                c.truncate(0)
-                c.write(file_dir)
-                f.close()
             except UnicodeDecodeError:
                 messagebox.showerror("Wrong Filetype!", "This file type is not supported!")
         except FileNotFoundError:
@@ -417,7 +423,11 @@ def open_document(self):
 def code_formatting(self):
     import autopep8
 
-    og_code = str(self.current_editor.text())
+    try:
+        og_code = str(self.current_editor.text())
+    except AttributeError:
+        QMessageBox.warning(self, "Not An Editor", "The current widget is not an editor.")
+        return
     if og_code != "":
         options = {
             "aggressive": 2,

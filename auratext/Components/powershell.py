@@ -15,6 +15,10 @@ from PyQt6.QtWidgets import (
     QWidget,
 )
 
+from auratext.Misc.import_res import notepadequalequalComponentImportPathAppend
+sys.path.append(notepadequalequalComponentImportPathAppend)
+from notepadequalequal.fileio import retrieve_file
+
 from auratext.scripts.def_path import resource
 
 newTerminalIcon = resource(r"../media/terminal/new.svg")
@@ -94,7 +98,7 @@ class TerminalEmulator(QWidget):
         self.history_index = 0
 
         self.current_command = ""
-        self.prompt = "> "
+        self.prompt = ""
 
         self.addNewTab()
 
@@ -179,7 +183,7 @@ class TerminalEmulator(QWidget):
             print("Unsupported operating system")
             sys.exit(1)
         local_app_data = os.path.join(local_app_data, "AuraText")
-        cpath = open(f"{local_app_data}/data/CPath_Project.txt", "r+").read()
+        cpath = retrieve_file(f"{local_app_data}/data/CPath_Project.txt").strip()
 
         self.start_powershell(index, project_path=cpath)
 
@@ -196,7 +200,7 @@ class TerminalEmulator(QWidget):
     def switchTab(self, index):
         self.current_process_index = index
         self.terminal.clear()
-        self.terminal.appendPlainText("> ")
+        # self.terminal.appendPlainText("")
 
     def closeTab(self, index):
         if self.tabBar.count() > 1:
@@ -238,8 +242,8 @@ class TerminalEmulator(QWidget):
         self.terminal.moveCursor(QTextCursor.MoveOperation.End)
         self.insert_colored_text(data)
         self.terminal.moveCursor(QTextCursor.MoveOperation.End)
-        if not data.endswith("\n"):
-            self.terminal.insertPlainText("\n")
+        # if not data.endswith("\n"):
+        #     self.terminal.insertPlainText("\n")
         self.display_prompt()
 
     def handle_stderr(self):
@@ -257,7 +261,7 @@ class TerminalEmulator(QWidget):
         self.display_prompt()
 
     def display_prompt(self):
-        self.terminal.appendPlainText(self.prompt)
+        # self.terminal.appendPlainText(self.prompt)
         self.terminal.moveCursor(QTextCursor.MoveOperation.End)
 
     def insert_colored_text(self, text, default_color=QColor(255, 255, 255)):
@@ -326,7 +330,7 @@ class TerminalEmulator(QWidget):
                 QPlainTextEdit.keyPressEvent(self.terminal, event)
 
     def execute_command(self):
-        self.terminal.appendPlainText("")
+        # self.terminal.appendPlainText("")
         self.processes[self.current_process_index].write(
             self.current_command.encode() + b"\n"
         )
@@ -363,7 +367,7 @@ class TerminalEmulator(QWidget):
     def run_command(self, command):
         self.terminal.moveCursor(QTextCursor.MoveOperation.End)
         self.terminal.insertPlainText(f"{self.prompt}{command}\n")
-        self.processes[self.current_process_index].write(command.encode() + b"\n")
+        self.processes[self.current_process_index].write(command.encode())
 
     def run_file(self, file_path):
         file_name = os.path.basename(file_path)

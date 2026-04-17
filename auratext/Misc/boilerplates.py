@@ -1,5 +1,6 @@
 import os
 import platform
+import sys
 
 from PyQt6.QtWidgets import (
     QMainWindow,
@@ -17,6 +18,10 @@ from PyQt6.QtWidgets import (
     QListWidget,
     QLabel,
     QDialog)
+
+from auratext.Misc.import_res import notepadequalequalComponentImportPathAppend
+sys.path.append(notepadequalequalComponentImportPathAppend)
+from notepadequalequal.fileio import retrieve_file
 
 if platform.system() == "Windows":
     local_app_data = os.getenv('LOCALAPPDATA')
@@ -73,9 +78,8 @@ class BoilerPlate(QDialog):
         # Read the contents of the selected file
         file_path = os.path.join(local_app_data, "boilerplates", f"{selected_file}.txt")
         try:
-            with open(file_path, 'r') as file:
-                file_contents = file.read()
-                print(file_contents)
-                self.current_editor.append(file_contents)
+            file_contents = retrieve_file(file_path)
+            print(file_contents)
+            self.current_editor.append(file_contents)
         except Exception as e:
             print(f"Error reading file: {e}")

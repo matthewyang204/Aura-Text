@@ -3,10 +3,7 @@ import os
 import shutil
 import platform
 
-# im lowk going insane.
-# pls forgive me for this abomination of a code. I just want to make it work and move on with my life.
-
-# Suppress fcukass Qt startup warnings.
+# Suppress Qt startup warnings.
 existing_qt_logging_rules = os.environ.get("QT_LOGGING_RULES", "").strip()
 required_qt_rules = [
     "qt.qpa.window=false",

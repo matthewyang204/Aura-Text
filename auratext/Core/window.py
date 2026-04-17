@@ -56,9 +56,13 @@ from ..Components.FunctionGrid import FunctionGridDialog
 from .MiniMapWidget import MiniMapWidget
 from .svg_icon_manager import SVGIconManager
 
+from auratext.Misc.import_res import notepadequalequalComponentImportPathAppend
+sys.path.append(notepadequalequalComponentImportPathAppend)
+
 from .AuraText import CodeEditor
 from auratext.Components.TabWidget import TabWidget
 from .plugin_interface import Plugin
+from notepadequalequal.fileio import retrieve_file
 
 if platform.system() == "Windows":
     local_app_data = os.getenv('LOCALAPPDATA')
@@ -75,14 +79,12 @@ local_app_data = os.path.join(local_app_data, "AuraText")
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
 try:
-    with open(f"{local_app_data}/data/CPath_Project.txt", "r+") as _cpath_file:
-        cpath = _cpath_file.read().strip()
+    cpath = retrieve_file(f"{local_app_data}/data/CPath_Project.txt").strip()
 except (FileNotFoundError, OSError):
     cpath = ""
 
 try:
-    with open(f"{local_app_data}/data/CPath_File.txt", "r+") as _cfile_file:
-        cfile = _cfile_file.read().strip()
+    cfile = retrieve_file(f"{local_app_data}/data/CPath_File.txt").strip()
 except (FileNotFoundError, OSError):
     cfile = ""
 
@@ -1680,32 +1682,29 @@ class Window(QMainWindow):
         image_extensions = ["png", "jpg", "jpeg", "ico", "gif", "bmp"]
         ext = path.split(".")[-1]
 
-        if ext.lower() == "pdf":
-            if self.open_pdf_in_app(path):
-                pdf_handler = getattr(self, "_latex_pdf_open_handler", None)
-                if callable(pdf_handler):
-                    pdf_handler(path)
-                return
+        # if ext.lower() == "pdf":
+        #     if self.open_pdf_in_app(path):
+        #         pdf_handler = getattr(self, "_latex_pdf_open_handler", None)
+        #         if callable(pdf_handler):
+        #             pdf_handler(path)
+        #         return
 
-        if ext.lower() == "db":
-            self.db_viewer = DBViewer(path)
-            self.tab_widget.addTab(self.db_viewer, os.path.basename(path))
-            self.tab_widget.setCurrentWidget(self.db_viewer)
-            return
+        # if ext.lower() == "db":
+        #     self.db_viewer = DBViewer(path)
+        #     self.tab_widget.addTab(self.db_viewer, os.path.basename(path))
+        #     self.tab_widget.setCurrentWidget(self.db_viewer)
+        #     return
 
-        if ext.lower() in image_extensions:
-            ModuleFile.add_image_tab(self, self.tab_widget, path, os.path.basename(path))
-            return
+        # if ext.lower() in image_extensions:
+        #     ModuleFile.add_image_tab(self, self.tab_widget, path, os.path.basename(path))
+        #     return
 
         try:
-            f = open(path, "r", encoding='utf-8', errors='ignore')
-            filedata = f.read()
-            f.close()
+            filedata = retrieve_file(path)
             self.new_document(title=os.path.basename(path), file_path=path)
             self.current_editor.insert(filedata)
             if ext.lower() == "md":
                 self.markdown_open(filedata, path)
-
         except UnicodeDecodeError:
             messagebox = QMessageBox()
             messagebox.setWindowTitle("Wrong Filetype!"), messagebox.setText(
@@ -2517,7 +2516,11 @@ class Window(QMainWindow):
         self.current_editor.copy()
 
     def summary(self):
-        text = self.current_editor.text()
+        try:
+            text = self.current_editor.text()
+        except AttributeError:
+            QMessageBox.warning(self, "Not An Editor", "The current widget is not an editor.")
+            return
         lines = text.count('\n') + 1 if text else 0
         words = len(text.split())
         chars_with_spaces = len(text)
@@ -2574,12 +2577,12 @@ class Window(QMainWindow):
 
     def open_last_file(self, title=os.path.basename(cfile)):
         try:
-            file = open(cfile, "r+")
+            # file = open(cfile, "r+")
             container = self.create_editor(cfile)
             self.current_editor = self.text_editor
             self.current_editor.textChanged.connect(self.updateStatusBar)
             self.current_editor.cursorPositionChanged.connect(self.updateStatusBar)
-            text = file.read()
+            text = retrieve_file(cfile)
             self.editors.append(self.current_editor)
             self.current_editor.setText(text)
             self.tab_widget.addTab(container, title)

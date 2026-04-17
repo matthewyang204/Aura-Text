@@ -14,7 +14,10 @@ def run_pyinstaller():
             '-w',  # Makes it windowed
             '--name', "Aura Text",
             '--icon=icon.ico',
-            '--exclude-module', 'PyQt5'
+            '--exclude-module', 'PyQt5',
+            '--add-data', 'notepadequalequal:notepadequalequal',
+            '--add-data', 'lib2to3:lib2to3',
+            '--add-data', 'auratext:auratext'
         ]
 
         # Run PyInstaller

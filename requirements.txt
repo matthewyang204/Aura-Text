@@ -23,3 +23,4 @@ pyinstaller
 pillow
 pyperclip
 psutil
+-r notepadequalequal/requirements.txt

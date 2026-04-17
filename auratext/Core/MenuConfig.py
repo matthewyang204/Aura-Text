@@ -7,7 +7,11 @@ import platform
 from PyQt6.QtWidgets import QMenu
 from PyQt6.QtGui import QAction, QIcon
 
+from auratext.Misc.import_res import notepadequalequalComponentImportPathAppend
+sys.path.append(notepadequalequalComponentImportPathAppend)
+
 from .plugin_interface import MenuPluginInterface
+from notepadequalequal.fileio import retrieve_file
 
 if platform.system() == "Windows":
     local_app_data = os.getenv('LOCALAPPDATA')
@@ -20,8 +24,7 @@ else:
     sys.exit(1)
 local_app_data = os.path.join(local_app_data, "AuraText")
 try:
-    with open(f"{local_app_data}/data/CPath_Project.txt", "r+") as _cpath_file:
-        cpath = _cpath_file.read().strip()
+    cpath = retrieve_file(f"{local_app_data}/data/CPath_Project.txt").strip()
 except (FileNotFoundError, OSError):
     cpath = ""
 
