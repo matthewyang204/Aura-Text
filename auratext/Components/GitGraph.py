@@ -3,6 +3,8 @@ import subprocess
 from PyQt6.QtWidgets import QWidget, QVBoxLayout, QTextEdit, QRadioButton, QHBoxLayout, QGroupBox
 from PyQt6.QtGui import QFont
 
+from auratext.Misc.boilerplates import get_font_for_platform
+
 class GitGraph(QWidget):
     def __init__(self, path):
         super().__init__()
@@ -27,7 +29,7 @@ class GitGraph(QWidget):
         self.graph_display = QTextEdit()
         self.graph_display.setReadOnly(True)
         # Use a monospaced font for better graph alignment
-        font = QFont("Courier New", 10)
+        font = get_font_for_platform(size=10, plain=True)
         self.graph_display.setFont(font)
 
         self.layout.addWidget(options_group)

@@ -2,6 +2,8 @@ from PyQt6.QtWidgets import QWidget
 from PyQt6.QtGui import QPainter, QColor, QFont, QFontMetrics, QPen, QBrush
 from PyQt6.QtCore import Qt, QRect, QRectF, QTimer, QPropertyAnimation, QEasingCurve, pyqtProperty
 
+from auratext.Misc.boilerplates import get_font_for_platform
+
 class MiniMapWidget(QWidget):
     def __init__(self, editor=None, parent=None):
         super().__init__(parent)
@@ -131,7 +133,7 @@ class MiniMapWidget(QWidget):
         self.line_height = max(2, min(4, available_height / max(total_lines, 1)))
         
         # Setup minimap font - small but readable monospace
-        font = QFont("Consolas", 2)
+        font = get_font_for_platform(size=2, plain=True)
         font.setStyleHint(QFont.StyleHint.Monospace)
         font.setPixelSize(max(2, int(self.line_height * 0.9)))
         painter.setFont(font)

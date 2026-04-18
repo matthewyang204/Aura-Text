@@ -14,6 +14,7 @@ from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QFrame, QHBoxLayout, QLabel, QStatusBar, QWidget, QPushButton
 
 # from ..scripts.color_scheme_loader import color_schemes
+from auratext.Misc.boilerplates import get_font_for_platform
 
 if platform.system() == "Windows":
     local_app_data = os.getenv('LOCALAPPDATA')
@@ -59,7 +60,7 @@ class StatusBar(QStatusBar):
         )
 
         
-        smallFont = QFont()
+        smallFont = get_font_for_platform(size=8, plain=False)
         smallFont.setPointSize(8)
 
         # Always initialize editModeLabel first
