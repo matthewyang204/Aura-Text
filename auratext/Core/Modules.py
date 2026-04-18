@@ -1,7 +1,6 @@
 import base64
 import os
 import random
-from tkinter import messagebox, filedialog
 import markdown
 import sys
 import pyttsx3
@@ -9,7 +8,7 @@ import requests
 import pyperclip
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QPixmap
-from PyQt6.QtWidgets import QLabel, QDockWidget, QMessageBox, QVBoxLayout, QTextEdit, QTextBrowser
+from PyQt6.QtWidgets import QFileDialog, QLabel, QDockWidget, QMessageBox, QVBoxLayout, QTextEdit, QTextBrowser
 import platform
 
 from auratext.Misc.import_res import notepadequalequalComponentImportPathAppend
@@ -174,15 +173,19 @@ class CodeSnippets:
     @staticmethod
     def snippets_gen(editor):
         snippet_text = editor.selectedText()
-        name = str(filedialog.asksaveasfilename(title="Select file", defaultextension=".py"))
+        filename, ok = QFileDialog.getSaveFileName(None, "Select file", "", "Python Files (*.py);;All Files (*)")[0]
+        if not ok:
+            return
+        name = str(filename)
         file = open(name, "w")
         file.write(snippet_text)
 
     @staticmethod
     def snippets_open(editor):
-        file_dir = filedialog.askopenfilename(
-            title="Select file",
-        )
+        filedirPath, ok = QFileDialog.getOpenFileName(None, "Select file", "", "All Files (*)")
+        if not ok:
+            return
+        file_dir = filedirPath
         ext = file_dir.split(".")[-1]
         if file_dir:
             try:
@@ -190,7 +193,7 @@ class CodeSnippets:
                     filedata = retrieve_file(file_dir)
                     editor.append(filedata)
                 except UnicodeDecodeError:
-                    messagebox.showerror("Wrong Filetype!", "This file type is not supported!")
+                    QMessageBox.warning(None, "Wrong Filetype", "This file type is not supported")
             except FileNotFoundError:
                 return
 
@@ -201,10 +204,7 @@ def rightSpeak(text):
         engine.say(text)
         engine.runAndWait()
     else:
-        messagebox.showerror(
-            "Text not found",
-            "Please enter something in the text box to convert it to speech.",
-        )
+        QMessageBox.warning(None, "Text not found", "Please enter something in the text box to convert it to speech.")
 
 
 def encypt(self):
@@ -215,10 +215,7 @@ def encypt(self):
         base64_encoded = base64_bytes.decode("ascii") + "   "
         self.replaceSelectedText(base64_encoded)
     else:
-        messagebox.showerror(
-            "No Selection",
-            "Please select something to encrypt.",
-        )
+        QMessageBox.warning(self, "No Selection", "Please select something to encrypt.")
 
 
 def decode(self):
@@ -229,10 +226,7 @@ def decode(self):
         sample_string = sample_string_bytes.decode("ascii") + "   "
         self.replaceSelectedText(sample_string)
     else:
-        messagebox.showerror(
-            "No Selection",
-            "Please select a basse64 string to decrypt.",
-        )
+        QMessageBox.warning(self, "No Selection", "Please select a base64 string to decrypt.")
 
 
 def markdown_new(self):
@@ -278,7 +272,7 @@ def markdown_open(self, path_data, file_path=None):
         self.current_editor.textChanged.connect(update)
         update()
     except AttributeError:
-        messagebox.showerror("Not an Editor", "The current widget is not an editor, or no editor is open. Please open one to continue.")
+        QMessageBox.warning(self, "Not an Editor", "The current widget is not an editor, or no editor is open. Please open one to continue.")
 
 
 def calculate(self):
@@ -287,14 +281,11 @@ def calculate(self):
         try:
             res = int(eval(stringg))
             res = str(res)
-            messagebox.showinfo("Result", res)
+            QMessageBox.information(self, "Result", res)
         except ZeroDivisionError:
-            messagebox.showerror("Zero Division Error", random.choice(emsg_zerodivision))
+            QMessageBox.warning(self, "Zero Division Error", random.choice(emsg_zerodivision))
     except TypeError and NameError:
-        messagebox.showerror(
-            "Invalid Expression",
-            "Either the expression you entered is not valid, or you have not entered one. Please enter a valid expression to continue.",
-        )
+        QMessageBox.warning(self, "Invalid Expression", "Either the expression you entered is not valid, or you have not entered one. Please enter a valid expression to continue.")
 
 
 def pastebin(self):
@@ -303,10 +294,10 @@ def pastebin(self):
         data = {"api_dev_key": api_key_pastebin, "api_option": "paste", "api_paste_code": text_pb}
         response = (requests.post("https://pastebin.com/api/api_post.php", data=data)).text
         text = "Your Pastebin link has been copied to the clipboard!"
-        messagebox.showinfo("Success!", text)
+        QMessageBox.information(self, "Success!", text)
         pyperclip.copy(response)
     else:
-        messagebox.showerror("No Code Found!", random.choice(emsg_nocode_list))
+        QMessageBox.warning(self, "No Code Found!", random.choice(emsg_nocode_list))
 
 
 def summary(self):
@@ -324,7 +315,7 @@ def summary(self):
             + "Total Word Count: "
             + "word_count"
     )
-    messagebox.showinfo("Summary", text)
+    QMessageBox.information(self, "Summary", text)
 
 
 def save_document(self, force_dialog=False):
@@ -340,13 +331,10 @@ def save_document(self, force_dialog=False):
             suggested_name = os.path.basename(existing_path) if existing_path else os.path.basename(current_tab_name)
             if not suggested_name:
                 suggested_name = "untitled.py"
-            name = str(
-                filedialog.asksaveasfilename(
-                    title="Select file",
-                    defaultextension=".py",
-                    initialfile=suggested_name,
-                )
-            )
+            filename, ok = QFileDialog.getSaveFileName(None, "Select file", "", "Python Files (*.py);;All Files (*)", initialFile=suggested_name)
+            if not ok:
+                return
+            name = filename
             if not name:
                 return
         else:
@@ -365,11 +353,8 @@ def save_document(self, force_dialog=False):
         file.close()
         return
     except FileNotFoundError:
-        messagebox.showerror(
-            "Don't wanna save your file?",
-            "You can run, but you can't hide from your unsaved changes."
-            " Please come back and save your work before it's too late!",
-        )
+        QMessageBox.warning(self, "File Not Found", "The file you are trying to save does not exist.")
+
 
 
 def add_image_tab(self, tab, image_path, tab_name):
@@ -382,9 +367,10 @@ def add_image_tab(self, tab, image_path, tab_name):
 
 
 def open_document(self):
-    file_dir = filedialog.askopenfilename(
-        title="Select file",
-    )
+    file_dir_path, ok = QFileDialog.getOpenFileName(None, "Select file", "", "All Files (*)")
+    if not ok:
+        return
+    file_dir = file_dir_path
     ext = file_dir.split(".")[-1].lower()
     image_extensions = ["png", "jpg", "jpeg", "ico", "gif", "bmp"]
 
@@ -405,7 +391,7 @@ def open_document(self):
                 return
 
         except UnicodeDecodeError:
-            messagebox.showerror("Wrong Filetype!", "This file type is not supported!")
+            QMessageBox.warning(self, "Wrong Filetype", "This file type is not supported")
 
         try:
             try:
@@ -415,7 +401,7 @@ def open_document(self):
                 self.new_document(title=os.path.basename(file_dir), file_path=file_dir)
                 self.current_editor.insert(filedata)
             except UnicodeDecodeError:
-                messagebox.showerror("Wrong Filetype!", "This file type is not supported!")
+                QMessageBox.warning(self, "Wrong Filetype", "This file type is not supported!")
         except FileNotFoundError:
             return
 
@@ -437,4 +423,4 @@ def code_formatting(self):
         self.custom_new_document(title="Code Formatting")
         self.current_editor.insert(clean_code)
     else:
-        messagebox.showerror("Error: No Code Found!", random.choice(emsg_nocode_list))
+        QMessageBox.warning(self, "Error: No Code Found!", random.choice(emsg_nocode_list))
