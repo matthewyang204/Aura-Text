@@ -3,6 +3,11 @@ import os
 import shutil
 import platform
 
+if platform.system() == "Linux":
+    from auratext.Misc.quirks import get_linux_productname, crosvm_quirks
+    if "crosvm" in get_linux_productname():
+        crosvm_quirks()
+
 # Suppress Qt startup warnings.
 existing_qt_logging_rules = os.environ.get("QT_LOGGING_RULES", "").strip()
 required_qt_rules = [
