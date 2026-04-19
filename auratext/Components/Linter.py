@@ -96,8 +96,7 @@ class LinterWorker(QObject):
     
             Run(
                 [self.temp_file],
-                reporter=reporter,
-                do_exit=False
+                reporter=reporter
             )
 
             data = json.loads(output.getvalue())
@@ -116,7 +115,7 @@ class LinterWorker(QObject):
     
         except Exception as e:
             print(f"Pylint error: {e}")
-
+        print(f"Pylint messages: {messages}")
         return messages
 
     def _run_flake8(self) -> List[LintMessage]:
