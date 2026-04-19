@@ -13,6 +13,11 @@ from PyQt6.QtCore import QObject, pyqtSignal, QTimer
 from PyQt6.QtGui import QColor
 from PyQt6.Qsci import QsciScintilla
 
+from io import StringIO
+from pylint.lint import Run
+from pylint.reporters.json_reporter import JSONReporter
+import json
+
 if platform.system() == "Windows":
     local_app_data = os.getenv('LOCALAPPDATA')
 elif platform.system() == "Linux":
@@ -62,12 +67,13 @@ class LinterWorker(QObject):
                 tf.write(self.content)
             
             for linter in self.linters:
-                if linter == 'pylint':
-                    messages.extend(self._run_pylint())
-                elif linter == 'flake8':
-                    messages.extend(self._run_flake8())
-                elif linter == 'pyflakes':
-                    messages.extend(self._run_pyflakes())
+                # if linter == 'pylint':
+                #     messages.extend(self._run_pylint())
+                # elif linter == 'flake8':
+                #     messages.extend(self._run_flake8())
+                # elif linter == 'pyflakes':
+                #     messages.extend(self._run_pyflakes())
+                messages.extend(self._run_pylint())
             
         except Exception as e:
             print(f"Linter error: {e}")
@@ -82,42 +88,35 @@ class LinterWorker(QObject):
         self.finished.emit(messages)
 
     def _run_pylint(self) -> List[LintMessage]:
-        """Run pylint and parse output"""
         messages = []
-        if platform.system() == "Windows":
-            print("WARNING: Windows does not like Python's forking, so we cannot run subprocesses like pylint here.")
-            return messages
+    
         try:
-            result = subprocess.run(
-                [sys.executable, '-m', 'pylint', '--output-format=json', self.temp_file],
-                capture_output=True,
-                text=True,
-                timeout=10
+            output = StringIO()
+            reporter = JSONReporter(output)
+    
+            Run(
+                [self.temp_file],
+                reporter=reporter,
+                do_exit=False
             )
-            
-            if result.stdout:
-                import json
-                try:
-                    data = json.loads(result.stdout)
-                    for item in data:
-                        severity = self._map_pylint_severity(item.get('type', 'info'))
-                        messages.append(LintMessage(
-                            line=item['line'],
-                            column=item['column'],
-                            severity=severity,
-                            message=item['message'],
-                            linter='pylint',
-                            code=item.get('message-id', '')
-                        ))
-                except json.JSONDecodeError:
-                    pass
-        except subprocess.TimeoutExpired:
-            print("Pylint timed out")
-        except FileNotFoundError:
-            pass  # Pylint not installed
+
+            data = json.loads(output.getvalue())
+
+            for item in data:
+                severity = self._map_pylint_severity(item.get('type', 'info'))
+
+                messages.append(LintMessage(
+                    line=item.get('line', 0),
+                    column=item.get('column', 0),
+                    severity=severity,
+                    message=item.get('message', ''),
+                    linter='pylint',
+                    code=item.get('message-id', '')
+                ))
+    
         except Exception as e:
             print(f"Pylint error: {e}")
-        
+
         return messages
 
     def _run_flake8(self) -> List[LintMessage]:
