@@ -98,5 +98,7 @@ def get_font_for_platform(size=12, plain=True):
         else:
             return QFont("Helvetica", size)
     else:
-        print("WARNING: No non-plain font is available on your platform.")
-        return QFont("DejaVu Sans Mono", size)
+        if plain:
+            return QFont("DejaVu Sans Mono", size)
+        else:
+            return QFont("Noto Sans", size)
