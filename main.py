@@ -68,6 +68,22 @@ def main():
         theme = _theme["material_type"] + ".xml"
         apply_stylesheet(app, theme=theme)
     ex = Window()
+    args = sys.argv[1:]
+    dirs = []
+    files = []
+    for path in args:
+        if os.path.exists(path):
+            if os.path.isdir(path):
+                dirs.append(path)
+            else:
+                files.append(path)
+    if len(dirs) > 0:
+        ex.open_project(path=dirs[0])
+        for file in files:
+            ex.open_file_from_path(file)
+    else:
+        for file in files:
+            ex.open_file_from_path(file)
     sys.exit(app.exec())
 
 if __name__ == "__main__":
