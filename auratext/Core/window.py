@@ -2315,6 +2315,9 @@ class Window(QMainWindow):
                 pathh = str(project_path)
             else:
                 return
+        else:
+            project_path = path
+            pathh = str(project_path)
         
         with open(f"{self.local_app_data}/data/CPath_Project.txt", "w", encoding="utf-8") as file:
            file.write(pathh)
