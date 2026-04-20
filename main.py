@@ -62,13 +62,7 @@ with open(f"{local_app_data}/data/theme.json", "r") as config_file:
 
 import random
 
-def main():
-    app = QApplication(sys.argv)
-    if _theme["theming"] == "material":
-        theme = _theme["material_type"] + ".xml"
-        apply_stylesheet(app, theme=theme)
-    ex = Window()
-    args = sys.argv[1:]
+def pathArgsHandler(ex, args):
     dirs = []
     files = []
     for path in args:
@@ -77,13 +71,18 @@ def main():
                 dirs.append(path)
             else:
                 files.append(path)
-    if len(dirs) > 0:
+    if dirs:
         ex.open_project(path=dirs[0])
-        for file in files:
-            ex.open_file_from_path(file)
-    else:
-        for file in files:
-            ex.open_file_from_path(file)
+    for file in files:
+        ex.open_file_from_path(file)
+
+def main():
+    app = QApplication(sys.argv)
+    if _theme["theming"] == "material":
+        theme = _theme["material_type"] + ".xml"
+        apply_stylesheet(app, theme=theme)
+    ex = Window()
+    pathArgsHandler(ex, sys.argv[1:])
     sys.exit(app.exec())
 
 if __name__ == "__main__":
