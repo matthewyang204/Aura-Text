@@ -2306,7 +2306,7 @@ class Window(QMainWindow):
             self.current_editor.show_search_dialog()
 
     def open_project(self, path=None):
-        if path is None:
+        if not path:
             dialog = QFileDialog(self)
             dialog.setFileMode(QFileDialog.FileMode.Directory)
             dialog.setOption(QFileDialog.Option.ShowDirsOnly, True)
