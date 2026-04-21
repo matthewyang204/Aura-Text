@@ -49,7 +49,7 @@ class ColorCodeLexer(QsciLexerCustom):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setColor(QColor("#000000"), 0)  # Default color
-        self.setFont(get_font_for_platform(size=10, plain=True))
+        self.setFont(get_font_for_platform(size=14, plain=True))
 
     def language(self):
         return "ColorCode"
@@ -81,7 +81,7 @@ def python(self):
     lexer.setColor(QColor("#59ff00"), lexer.TripleDoubleQuotedString)
     lexer.setColor(QColor("#3ba800"), lexer.SingleQuotedString)
     lexer.setColor(QColor("#3ba800"), lexer.DoubleQuotedString)
-    lexer.setFont(get_font_for_platform(size=10, plain=True))
+    lexer.setFont(get_font_for_platform(size=14, plain=True))
 
 
 class PythonLexer(QsciLexerPython):
@@ -90,7 +90,7 @@ class PythonLexer(QsciLexerPython):
         self.setDefaultColor(QColor("white"))
         self.setPaper(QColor(window._themes["editor_theme"]))
         self.setColor(QColor("#ffffff"), self.ClassName)
-        self.setFont(get_font_for_platform(size=10, plain=True))
+        self.setFont(get_font_for_platform(size=14, plain=True))
 
 def csharp(self):
     lexer = QsciLexerCSharp()
@@ -99,7 +99,7 @@ def csharp(self):
     lexer.setPaper(QColor(self._themes["editor_theme"]))
     lexer.setColor(QColor("#808080"), lexer.Comment)
     lexer.setColor(QColor("#FFA500"), lexer.Keyword)
-    lexer.setFont(get_font_for_platform(size=10, plain=True))
+    lexer.setFont(get_font_for_platform(size=14, plain=True))
 
 
 def avs(self):
@@ -108,7 +108,7 @@ def avs(self):
     self.current_editor.setLexer(lexer)
     lexer.setPaper(QColor(self._themes["editor_theme"]))
     lexer.setColor(QColor("#FFA500"), lexer.Keyword)
-    lexer.setFont(get_font_for_platform(size=10, plain=True))
+    lexer.setFont(get_font_for_platform(size=14, plain=True))
 
 
 def asm(self):
@@ -117,7 +117,7 @@ def asm(self):
     self.current_editor.setLexer(lexer)
     lexer.setPaper(QColor(self._themes["editor_theme"]))
     lexer.setColor(QColor("#808080"), lexer.Comment)
-    lexer.setFont(get_font_for_platform(size=10, plain=True))
+    lexer.setFont(get_font_for_platform(size=14, plain=True))
 
 
 def coffeescript(self):
@@ -127,7 +127,7 @@ def coffeescript(self):
     lexer.setPaper(QColor(self._themes["editor_theme"]))
     lexer.setColor(QColor("#808080"), lexer.Comment)
     lexer.setColor(QColor("#FFA500"), lexer.Keyword)
-    lexer.setFont(get_font_for_platform(size=10, plain=True))
+    lexer.setFont(get_font_for_platform(size=14, plain=True))
 
 
 def ma(self):
@@ -137,7 +137,7 @@ def ma(self):
     lexer.setPaper(QColor(self._themes["editor_theme"]))
     lexer.setColor(QColor("#808080"), lexer.Comment)
     lexer.setColor(QColor("#FFA500"), lexer.Keyword)
-    lexer.setFont(get_font_for_platform(size=10, plain=True))
+    lexer.setFont(get_font_for_platform(size=14, plain=True))
 
 
 def json(self):
@@ -146,7 +146,7 @@ def json(self):
     self.current_editor.setLexer(lexer)
     lexer.setPaper(QColor(self._themes["editor_theme"]))
     lexer.setColor(QColor("#FFA500"), lexer.Keyword)
-    lexer.setFont(get_font_for_platform(size=10, plain=True))
+    lexer.setFont(get_font_for_platform(size=14, plain=True))
 
 
 def js(self):
@@ -157,7 +157,7 @@ def js(self):
     lexer.setColor(QColor("#808080"), lexer.Comment)
     lexer.setColor(QColor("#FFA500"), lexer.Keyword)
     lexer.setColor(QColor("#ffffff"), lexer.Default)
-    lexer.setFont(get_font_for_platform(size=10, plain=True))
+    lexer.setFont(get_font_for_platform(size=14, plain=True))
 
 
 def fortran(self):
@@ -167,7 +167,7 @@ def fortran(self):
     lexer.setPaper(QColor(self._themes["editor_theme"]))
     lexer.setColor(QColor("#808080"), lexer.Comment)
     lexer.setColor(QColor("#FFA500"), lexer.Keyword)
-    lexer.setFont(get_font_for_platform(size=10, plain=True))
+    lexer.setFont(get_font_for_platform(size=14, plain=True))
 
 
 def java(self):
@@ -177,7 +177,7 @@ def java(self):
     lexer.setPaper(QColor(self._themes["editor_theme"]))
     lexer.setColor(QColor("#808080"), lexer.Comment)
     lexer.setColor(QColor("#FFA500"), lexer.Keyword)
-    lexer.setFont(get_font_for_platform(size=10, plain=True))
+    lexer.setFont(get_font_for_platform(size=14, plain=True))
 
 
 def bash(self):
@@ -187,7 +187,7 @@ def bash(self):
     lexer.setPaper(QColor(self._themes["editor_theme"]))
     lexer.setColor(QColor("#808080"), lexer.Comment)
     lexer.setColor(QColor("#FFA500"), lexer.Keyword)
-    lexer.setFont(get_font_for_platform(size=10, plain=True))
+    lexer.setFont(get_font_for_platform(size=14, plain=True))
 
 
 def yaml(self):
@@ -197,7 +197,7 @@ def yaml(self):
     lexer.setPaper(QColor(self._themes["editor_theme"]))
     lexer.setColor(QColor("#808080"), lexer.Comment)
     lexer.setColor(QColor("#FFA500"), lexer.Keyword)
-    lexer.setFont(get_font_for_platform(size=10, plain=True))
+    lexer.setFont(get_font_for_platform(size=14, plain=True))
 
 
 def xml(self):
@@ -205,7 +205,7 @@ def xml(self):
     lexer.setDefaultColor(QColor("#FFFFFF"))
     self.current_editor.setLexer(lexer)
     lexer.setPaper(QColor(self._themes["editor_theme"]))
-    lexer.setFont(get_font_for_platform(size=10, plain=True))
+    lexer.setFont(get_font_for_platform(size=14, plain=True))
 
 
 def html(self):
@@ -222,7 +222,7 @@ def html(self):
     lexer.setColor(QColor("#FFFFFF"), lexer.Entity)
     lexer.setColor(QColor("#FFFFFF"), lexer.OtherInTag)
     lexer.setColor(QColor("#569CD6"), lexer.HTMLNumber)
-    lexer.setFont(get_font_for_platform(size=10, plain=True))
+    lexer.setFont(get_font_for_platform(size=14, plain=True))
 
 
 def cpp(self):
@@ -233,7 +233,7 @@ def cpp(self):
     lexer.setColor(QColor("#808080"), lexer.Comment)
     lexer.setColor(QColor("#FFA500"), lexer.Keyword)
     lexer.setColor(QColor("#ffffff"), lexer.Identifier)
-    lexer.setFont(get_font_for_platform(size=10, plain=True))
+    lexer.setFont(get_font_for_platform(size=14, plain=True))
 
 
 def srec(self):
@@ -241,7 +241,7 @@ def srec(self):
     lexer.setDefaultColor(QColor("#FFFFFF"))
     self.current_editor.setLexer(lexer)
     lexer.setPaper(QColor(self._themes["editor_theme"]))
-    lexer.setFont(get_font_for_platform(size=10, plain=True))
+    lexer.setFont(get_font_for_platform(size=14, plain=True))
 
 
 def ruby(self):
@@ -252,7 +252,7 @@ def ruby(self):
     lexer.setColor(QColor("#808080"), lexer.Comment)
     lexer.setColor(QColor("#FFA500"), lexer.Keyword)
     lexer.setColor(QColor("#ffffff"), lexer.ClassName)
-    lexer.setFont(get_font_for_platform(size=10, plain=True))
+    lexer.setFont(get_font_for_platform(size=14, plain=True))
 
 
 def perl(self):
@@ -262,7 +262,7 @@ def perl(self):
     lexer.setPaper(QColor(self._themes["editor_theme"]))
     lexer.setColor(QColor("#808080"), lexer.Comment)
     lexer.setColor(QColor("#FFA500"), lexer.Keyword)
-    lexer.setFont(get_font_for_platform(size=10, plain=True))
+    lexer.setFont(get_font_for_platform(size=14, plain=True))
 
 
 def css(self):
@@ -271,7 +271,7 @@ def css(self):
     self.current_editor.setLexer(lexer)
     lexer.setPaper(QColor(self._themes["editor_theme"]))
     lexer.setColor(QColor("#808080"), lexer.Comment)
-    lexer.setFont(get_font_for_platform(size=10, plain=True))
+    lexer.setFont(get_font_for_platform(size=14, plain=True))
 
 
 def lua(self):
@@ -281,7 +281,7 @@ def lua(self):
     lexer.setPaper(QColor(self._themes["editor_theme"]))
     lexer.setColor(QColor("#808080"), lexer.Comment)
     lexer.setColor(QColor("#FFA500"), lexer.Keyword)
-    lexer.setFont(get_font_for_platform(size=10, plain=True))
+    lexer.setFont(get_font_for_platform(size=14, plain=True))
 
 
 def sql(self):
@@ -291,7 +291,7 @@ def sql(self):
     lexer.setPaper(QColor(self._themes["editor_theme"]))
     lexer.setColor(QColor("#808080"), lexer.Comment)
     lexer.setColor(QColor("#FFA500"), lexer.Keyword)
-    lexer.setFont(get_font_for_platform(size=10, plain=True))
+    lexer.setFont(get_font_for_platform(size=14, plain=True))
 
 
 def tex(self):
@@ -305,7 +305,7 @@ def tex(self):
     lexer.setColor(QColor("#59ff00"), lexer.Group)
     lexer.setColor(QColor("#DCDCAA"), lexer.Symbol)
     lexer.setColor(QColor("#FFFFFF"), lexer.Text)
-    lexer.setFont(get_font_for_platform(size=10, plain=True))
+    lexer.setFont(get_font_for_platform(size=14, plain=True))
 
 
 def bat(self):
@@ -315,7 +315,7 @@ def bat(self):
     lexer.setPaper(QColor(self._themes["editor_theme"]))
     lexer.setColor(QColor("#808080"), lexer.Comment)
     lexer.setColor(QColor("#FFA500"), lexer.Keyword)
-    lexer.setFont(get_font_for_platform(size=10, plain=True))
+    lexer.setFont(get_font_for_platform(size=14, plain=True))
 
 
 def cmake(self):
@@ -324,7 +324,7 @@ def cmake(self):
     self.current_editor.setLexer(lexer)
     lexer.setPaper(QColor(self._themes["editor_theme"]))
     lexer.setColor(QColor("#808080"), lexer.Comment)
-    lexer.setFont(get_font_for_platform(size=10, plain=True))
+    lexer.setFont(get_font_for_platform(size=14, plain=True))
 
 
 def postscript(self):
@@ -334,7 +334,7 @@ def postscript(self):
     lexer.setPaper(QColor(self._themes["editor_theme"]))
     lexer.setColor(QColor("#808080"), lexer.Comment)
     lexer.setColor(QColor("#FFA500"), lexer.Keyword)
-    lexer.setFont(get_font_for_platform(size=10, plain=True))
+    lexer.setFont(get_font_for_platform(size=14, plain=True))
 
 
 def markdown(self):
@@ -345,7 +345,7 @@ def markdown(self):
     lexer.setColor(QColor("#808080"), lexer.Header1)
     lexer.setColor(QColor("#FFA500"), lexer.Header2)
     lexer.setColor(QColor("#ffffff"), lexer.Header3)
-    lexer.setFont(get_font_for_platform(size=10, plain=True))
+    lexer.setFont(get_font_for_platform(size=14, plain=True))
 
 
 def makefile(self):
@@ -354,7 +354,7 @@ def makefile(self):
     self.current_editor.setLexer(lexer)
     lexer.setPaper(QColor(self._themes["editor_theme"]))
     lexer.setColor(QColor("#808080"), lexer.Comment)
-    lexer.setFont(get_font_for_platform(size=10, plain=True))
+    lexer.setFont(get_font_for_platform(size=14, plain=True))
 
 
 def pascal(self):
@@ -364,7 +364,7 @@ def pascal(self):
     lexer.setPaper(QColor(self._themes["editor_theme"]))
     lexer.setColor(QColor("#808080"), lexer.Comment)
     lexer.setColor(QColor("#FFA500"), lexer.Keyword)
-    lexer.setFont(get_font_for_platform(size=10, plain=True))
+    lexer.setFont(get_font_for_platform(size=14, plain=True))
 
 
 def tcl(self):
@@ -373,7 +373,7 @@ def tcl(self):
     self.current_editor.setLexer(lexer)
     lexer.setPaper(QColor(self._themes["editor_theme"]))
     lexer.setColor(QColor("#808080"), lexer.Comment)
-    lexer.setFont(get_font_for_platform(size=10, plain=True))
+    lexer.setFont(get_font_for_platform(size=14, plain=True))
 
 
 def verilog(self):
@@ -383,7 +383,7 @@ def verilog(self):
     lexer.setPaper(QColor(self._themes["editor_theme"]))
     lexer.setColor(QColor(self._themes["editor_theme"]), lexer.Comment)
     lexer.setColor(QColor("#FFA500"), lexer.Keyword)
-    lexer.setFont(get_font_for_platform(size=10, plain=True))
+    lexer.setFont(get_font_for_platform(size=14, plain=True))
 
 
 def spice(self):
@@ -392,7 +392,7 @@ def spice(self):
     self.current_editor.setLexer(lexer)
     lexer.setPaper(QColor(self._themes["editor_theme"]))
     lexer.setColor(QColor("#808080"), lexer.Comment)
-    lexer.setFont(get_font_for_platform(size=10, plain=True))
+    lexer.setFont(get_font_for_platform(size=14, plain=True))
 
 
 def vhdl(self):
@@ -402,7 +402,7 @@ def vhdl(self):
     lexer.setPaper(QColor(self._themes["editor_theme"]))
     lexer.setColor(QColor("#808080"), lexer.Comment)
     lexer.setColor(QColor("#FFA500"), lexer.Keyword)
-    lexer.setFont(get_font_for_platform(size=10, plain=True))
+    lexer.setFont(get_font_for_platform(size=14, plain=True))
 
 
 def octave(self):
@@ -412,7 +412,7 @@ def octave(self):
     lexer.setPaper(QColor(self._themes["editor_theme"]))
     lexer.setColor(QColor("#808080"), lexer.Comment)
     lexer.setColor(QColor("#FFA500"), lexer.Keyword)
-    lexer.setFont(get_font_for_platform(size=10, plain=True))
+    lexer.setFont(get_font_for_platform(size=14, plain=True))
 
 
 def fortran77(self):
@@ -422,4 +422,4 @@ def fortran77(self):
     lexer.setPaper(QColor(self._themes["editor_theme"]))
     lexer.setColor(QColor("#808080"), lexer.Comment)
     lexer.setColor(QColor("#FFA500"), lexer.Keyword)
-    lexer.setFont(get_font_for_platform(size=10, plain=True))
+    lexer.setFont(get_font_for_platform(size=14, plain=True))

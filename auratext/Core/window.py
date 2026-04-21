@@ -2305,30 +2305,35 @@ class Window(QMainWindow):
         if self.current_editor and self.current_editor != "" and hasattr(self.current_editor, "show_search_dialog"):
             self.current_editor.show_search_dialog()
 
-    def open_project(self):
-        dialog = QFileDialog(self)
-        dialog.setFileMode(QFileDialog.FileMode.Directory)
-        dialog.setOption(QFileDialog.Option.ShowDirsOnly, True)
-        if dialog.exec():
-            project_path = dialog.selectedFiles()[0]
-            pathh = str(project_path)
-            with open(f"{self.local_app_data}/data/CPath_Project.txt", "w") as file:
-                file.write(pathh)
-            messagebox = QMessageBox()
-            messagebox.setWindowTitle("New Project"), messagebox.setText(
-                f"New project created at {project_path}"
-            )
-            if is_git_repo():
-                self.commit_button.hide()
-                self.sidebar_layout.insertWidget(3, self.commit_button)
-                self.commit_button.show()
+    def open_project(self, path=None):
+        if path is None:
+            dialog = QFileDialog(self)
+            dialog.setFileMode(QFileDialog.FileMode.Directory)
+            dialog.setOption(QFileDialog.Option.ShowDirsOnly, True)
+            if dialog.exec():
+                project_path = dialog.selectedFiles()[0]
+                pathh = str(project_path)
             else:
-                self.commit_button.hide()
-            messagebox.exec()
-            self.treeview_project(project_path)
-            self.addProjectsToDB(name=(os.path.basename(project_path)), project_path=pathh)
+                return
         else:
-            pass
+            project_path = path
+            pathh = str(project_path)
+        
+        with open(f"{self.local_app_data}/data/CPath_Project.txt", "w", encoding="utf-8") as file:
+           file.write(pathh)
+        messagebox = QMessageBox()
+        messagebox.setWindowTitle("New Project"), messagebox.setText(
+            f"New project created at {project_path}"
+        )
+        if is_git_repo():
+            self.commit_button.hide()
+            self.sidebar_layout.insertWidget(3, self.commit_button)
+            self.commit_button.show()
+        else:
+            self.commit_button.hide()
+        messagebox.exec()
+        self.treeview_project(project_path)
+        self.addProjectsToDB(name=(os.path.basename(project_path)), project_path=pathh)
 
     def open_project_as_treeview(self):
         dialog = QFileDialog(self)
