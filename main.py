@@ -60,8 +60,6 @@ with open(f"{local_app_data}/data/config.json", "r") as config_file:
 with open(f"{local_app_data}/data/theme.json", "r") as config_file:
     _theme = json.load(config_file)
 
-import random
-
 def pathArgsHandler(ex, args):
     dirs = []
     files = []
