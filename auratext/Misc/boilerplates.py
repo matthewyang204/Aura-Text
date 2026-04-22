@@ -111,3 +111,9 @@ def pathspec_gitignore_parse(gitignore_path):
     spec = pathspec.PathSpec.from_lines('gitwildmatch', lines)
     
     return [line.strip() for line in lines if line.strip() and not line.startswith("#")]
+
+def is_under_parent_dir(path, parent_dir):
+    path = os.path.abspath(path)
+    parent_dir = os.path.abspath(parent_dir)
+    return os.path.commonpath([path, parent_dir]) == parent_dir
+
