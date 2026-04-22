@@ -228,6 +228,7 @@ class Window(QMainWindow):
         if cpath == "" or cpath == " ":
             welcome_widget = WelcomeScreen.WelcomeWidget(self)
             self.tab_widget.addTab(welcome_widget, "Welcome")
+        self.cpath = cpath
 
         self.tab_widget.setTabsClosable(True)
 
@@ -1197,6 +1198,7 @@ class Window(QMainWindow):
     def perform_project_search(self):
         if not hasattr(self, 'project_search_results'):
             return
+        cpath = self.cpath
 
         query = self.project_search_input.text().strip()
         self.project_search_results.clear()
@@ -1220,7 +1222,7 @@ class Window(QMainWindow):
             "build",
             "dist",
         }
-        if project_root:
+        if project_root and os.path.exists(os.path.join(project_root, ".gitignore")):
             excluded_dirs = pathspec_gitignore_parse(os.path.join(project_root, ".gitignore"))
             print(".gitignore found, using exclude directories:")
         else:
@@ -2341,6 +2343,7 @@ class Window(QMainWindow):
             self.commit_button.hide()
         messagebox.exec()
         self.treeview_project(project_path)
+        self.cpath = project_path
         self.addProjectsToDB(name=(os.path.basename(project_path)), project_path=pathh)
 
     def open_project_as_treeview(self):
