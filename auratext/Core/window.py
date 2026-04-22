@@ -63,7 +63,7 @@ from .AuraText import CodeEditor
 from auratext.Components.TabWidget import TabWidget
 from .plugin_interface import Plugin
 from notepadequalequal.fileio import retrieve_file
-from auratext.Misc.boilerplates import get_font_for_platform, pathspec_gitignore_parse
+from auratext.Misc.boilerplates import get_font_for_platform, pathspec_gitignore_parse, is_under_parent_list
 
 if platform.system() == "Windows":
     local_app_data = os.getenv('LOCALAPPDATA')
@@ -1237,7 +1237,7 @@ class Window(QMainWindow):
         reached_limit = False
 
         for root, dirs, files in os.walk(project_root):
-            dirs[:] = [d for d in dirs if d not in excluded_dirs]
+            dirs[:] = [d for d in dirs if not is_under_parent_list(d, excluded_dirs)]
 
             for filename in files:
                 file_path = os.path.join(root, filename)
