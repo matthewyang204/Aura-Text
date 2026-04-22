@@ -19,6 +19,7 @@ from PyQt6.QtWidgets import (
     QLabel,
     QDialog)
 from PyQt6.QtGui import QFont
+import pathspec
 
 from auratext.Misc.import_res import notepadequalequalComponentImportPathAppend
 sys.path.append(notepadequalequalComponentImportPathAppend)
@@ -102,3 +103,11 @@ def get_font_for_platform(size=12, plain=True):
             return QFont("DejaVu Sans Mono", size)
         else:
             return QFont("Noto Sans", size)
+        
+def pathspec_gitignore_parse(gitignore_path):
+    with open(gitignore_path, "r") as f:
+        lines = f.read().splitlines()
+        
+    spec = pathspec.PathSpec.from_lines('gitwildmatch', lines)
+    
+    return [line.strip() for line in lines if line.strip() and not line.startswith("#")]

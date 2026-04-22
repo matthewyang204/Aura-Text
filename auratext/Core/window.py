@@ -1210,6 +1210,7 @@ class Window(QMainWindow):
             self.project_search_info_label.setText("No project folder is open.")
             return
 
+        
         excluded_dirs = {
             ".git",
             "__pycache__",

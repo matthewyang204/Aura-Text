@@ -24,4 +24,5 @@ pillow
 pyperclip
 psutil
 pylint
+pathspec
 -r notepadequalequal/requirements.txt
