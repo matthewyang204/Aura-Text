@@ -63,7 +63,7 @@ from .AuraText import CodeEditor
 from auratext.Components.TabWidget import TabWidget
 from .plugin_interface import Plugin
 from notepadequalequal.fileio import retrieve_file
-from auratext.Misc.boilerplates import get_font_for_platform
+from auratext.Misc.boilerplates import get_font_for_platform, pathspec_gitignore_parse
 
 if platform.system() == "Windows":
     local_app_data = os.getenv('LOCALAPPDATA')
@@ -1211,7 +1211,7 @@ class Window(QMainWindow):
             return
 
         
-        excluded_dirs = {
+        default_excluded_dirs = {
             ".git",
             "__pycache__",
             ".venv",
@@ -1220,6 +1220,13 @@ class Window(QMainWindow):
             "build",
             "dist",
         }
+        if project_root:
+            excluded_dirs = pathspec_gitignore_parse(os.path.join(project_root, ".gitignore"))
+            print(".gitignore found, using exclude directories:")
+        else:
+            excluded_dirs = default_excluded_dirs
+            print("No .gitignore found, using default exclude directories:")
+        print(excluded_dirs)
         max_file_size_bytes = 1024 * 1024
         max_results = 500
 
