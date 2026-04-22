@@ -117,3 +117,12 @@ def is_under_parent_dir(path, parent_dir):
     parent_dir = os.path.abspath(parent_dir)
     return os.path.commonpath([path, parent_dir]) == parent_dir
 
+def is_under_parent_list(path, parent_dirs):
+    n = 0
+    for parent_dir in parent_dirs:
+        if is_under_parent_dir(path, parent_dir):
+            n += 1
+    if n > 0:
+        return True
+    else:
+        return False
