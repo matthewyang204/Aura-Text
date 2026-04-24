@@ -363,7 +363,7 @@ class Window(QMainWindow):
         self.commit_button.unselected_icon = commit_unselected
         self.commit_button.selected_icon = commit_selected
 
-        git_graph_icon = QIcon(f"{local_app_data}/icons/search.png")
+        git_graph_icon = QIcon(f"{local_app_data}/icons/gitgraph.png")
         self.git_graph_button = QPushButton(self)
         self.git_graph_button.setIcon(git_graph_icon)
         self.git_graph_button.clicked.connect(self.gitGraph)
