@@ -71,7 +71,7 @@ class GitGraph(QWidget):
                 self.graph_display.setText(f"Error fetching Git log:\n{process.stderr}")
 
         except FileNotFoundError:
-            self.graph_display.setText("Git not found. Please ensure Git is installed and in your system's PATH.")
+            self.graph_display.setText("Either Git is not installed or you have not opened a Git repository. Please ensure Git is installed and you have a Git repository opened.")
         except Exception as e:
             self.graph_display.setText(f"An error occurred: {e}")
 
