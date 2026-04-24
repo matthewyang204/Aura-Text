@@ -386,9 +386,9 @@ class Window(QMainWindow):
 
         if self.is_git_repo():
             self.sidebar_layout.insertWidget(3, self.commit_button)
+            self.sidebar_layout.insertWidget(4, self.git_graph_button)
         else:
             pass
-        self.sidebar_layout.insertWidget(4, self.git_graph_button)
 
         self.sidebar_layout.addStretch()
         self.leftBar_layout.addStretch()
