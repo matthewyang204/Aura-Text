@@ -1,4 +1,5 @@
 from __future__ import annotations
+import sys
 from typing import TYPE_CHECKING
 import re
 from PyQt6.Qsci import QsciScintilla
@@ -77,7 +78,7 @@ class Search(QDialog):
 
 
 class CodeEditor(QsciScintilla):
-    def __init__(self, window: Window):
+    def __init__(self, window: Window, indentType="spaces"):
         super().__init__(parent=None)
 
         self._themes = window._themes
@@ -111,7 +112,13 @@ class CodeEditor(QsciScintilla):
         lexer.setFont(get_font_for_platform(size=14))
 
         self.setTabWidth(4)
-        self.setIndentationsUseTabs(False)
+        if indentType == "spaces":
+            self.setIndentationsUseTabs(False)
+        elif indentType == "tabs":
+            self.setIndentationsUseTabs(True)
+        else:
+            print(f"ERROR: Invalid indentType '{indentType}' provided. Must be of types 'spaces' or 'tabs'.")
+            sys.exit(1)
         self.setMarginLineNumbers(1, True)
         self.setAutoIndent(True)
         self.setMarginWidth(1, "#0000")
