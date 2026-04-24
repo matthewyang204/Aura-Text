@@ -167,6 +167,9 @@ class CodeEditor(QsciScintilla):
         
         # Connect text changed to update color previews
         self.textChanged.connect(self.update_color_previews)
+
+        # Monkey-patch insert
+        self.qscinsert = super(CodeEditor, self).insert
         
         # Initial scan for colors
         QTimer.singleShot(100, self.update_color_previews)
@@ -454,3 +457,8 @@ class CodeEditor(QsciScintilla):
                 
                 # Update color previews
                 QTimer.singleShot(50, self.update_color_previews)
+
+    def insert(self, text):
+        if '\t' in text:
+            self.setIndentationsUseTabs(True)
+        self.qscinsert(text)
