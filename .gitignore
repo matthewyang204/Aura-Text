@@ -213,3 +213,12 @@ __marimo__/
 # Inno Setup build artifacts
 Output/
 auratext/elements.db
+
+# macOS annoyances
+.DS_Store
+._*
+*DS_Store
+
+# GNU nano annoyances
+*.swp
+*.save
