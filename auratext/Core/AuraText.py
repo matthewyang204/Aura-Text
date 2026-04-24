@@ -111,6 +111,7 @@ class CodeEditor(QsciScintilla):
         lexer.setFont(get_font_for_platform(size=14))
 
         self.setTabWidth(4)
+        self.setIndentationsUseTabs(False)
         self.setMarginLineNumbers(1, True)
         self.setAutoIndent(True)
         self.setMarginWidth(1, "#0000")
