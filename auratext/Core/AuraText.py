@@ -459,6 +459,6 @@ class CodeEditor(QsciScintilla):
                 QTimer.singleShot(50, self.update_color_previews)
 
     def insert(self, text):
-        if '\t' in text:
-            self.setIndentationsUseTabs(True)
+        if '    ' in text:
+            self.setIndentationsUseTabs(False)
         self.qscinsert(text)
