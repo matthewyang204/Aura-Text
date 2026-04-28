@@ -63,7 +63,7 @@ from .AuraText import CodeEditor
 from auratext.Components.TabWidget import TabWidget
 from .plugin_interface import Plugin
 from notepadequalequal.fileio import retrieve_file
-from auratext.Misc.boilerplates import get_font_for_platform
+from auratext.Misc.boilerplates import get_font_for_platform, pathspec_gitignore_parse, is_under_parent_list
 
 if platform.system() == "Windows":
     local_app_data = os.getenv('LOCALAPPDATA')
@@ -228,6 +228,7 @@ class Window(QMainWindow):
         if cpath == "" or cpath == " ":
             welcome_widget = WelcomeScreen.WelcomeWidget(self)
             self.tab_widget.addTab(welcome_widget, "Welcome")
+        self.cpath = cpath
 
         self.tab_widget.setTabsClosable(True)
 
@@ -362,7 +363,7 @@ class Window(QMainWindow):
         self.commit_button.unselected_icon = commit_unselected
         self.commit_button.selected_icon = commit_selected
 
-        git_graph_icon = QIcon(f"{local_app_data}/icons/search.png")
+        git_graph_icon = QIcon(f"{local_app_data}/icons/gitgraph.png")
         self.git_graph_button = QPushButton(self)
         self.git_graph_button.setIcon(git_graph_icon)
         self.git_graph_button.clicked.connect(self.gitGraph)
@@ -386,6 +387,7 @@ class Window(QMainWindow):
 
         if self.is_git_repo():
             self.sidebar_layout.insertWidget(3, self.commit_button)
+            self.sidebar_layout.insertWidget(4, self.git_graph_button)
         else:
             pass
 
@@ -1197,6 +1199,7 @@ class Window(QMainWindow):
     def perform_project_search(self):
         if not hasattr(self, 'project_search_results'):
             return
+        cpath = self.cpath
 
         query = self.project_search_input.text().strip()
         self.project_search_results.clear()
@@ -1210,7 +1213,8 @@ class Window(QMainWindow):
             self.project_search_info_label.setText("No project folder is open.")
             return
 
-        excluded_dirs = {
+        
+        default_excluded_dirs = {
             ".git",
             "__pycache__",
             ".venv",
@@ -1219,6 +1223,13 @@ class Window(QMainWindow):
             "build",
             "dist",
         }
+        if project_root and os.path.exists(os.path.join(project_root, ".gitignore")):
+            excluded_dirs = pathspec_gitignore_parse(os.path.join(project_root, ".gitignore"))
+            print(".gitignore found, using exclude directories:")
+        else:
+            excluded_dirs = default_excluded_dirs
+            print("No .gitignore found, using default exclude directories:")
+        print(excluded_dirs)
         max_file_size_bytes = 1024 * 1024
         max_results = 500
 
@@ -1227,7 +1238,7 @@ class Window(QMainWindow):
         reached_limit = False
 
         for root, dirs, files in os.walk(project_root):
-            dirs[:] = [d for d in dirs if d not in excluded_dirs]
+            dirs[:] = [d for d in dirs if not is_under_parent_list(d, excluded_dirs)]
 
             for filename in files:
                 file_path = os.path.join(root, filename)
@@ -2333,6 +2344,7 @@ class Window(QMainWindow):
             self.commit_button.hide()
         messagebox.exec()
         self.treeview_project(project_path)
+        self.cpath = project_path
         self.addProjectsToDB(name=(os.path.basename(project_path)), project_path=pathh)
 
     def open_project_as_treeview(self):

@@ -2,6 +2,7 @@ import json
 import os
 import shutil
 import platform
+from auratext.Misc.quirks import copy_if_not_exists
 
 if platform.system() == "Linux":
     from auratext.Misc.quirks import get_linux_productname, crosvm_quirks
@@ -44,9 +45,13 @@ else:
     sys.exit(1)
 local_app_data = os.path.join(local_app_data, "AuraText")
 
+template_app_data = os.path.join(os.path.dirname(sys.executable), "LocalAppData", "AuraText")
 if not os.path.exists(local_app_data):
-    template_app_data = os.path.join(os.path.dirname(sys.executable), "LocalAppData", "AuraText")
+    print("Setting up appdata...")
     shutil.copytree(template_app_data, local_app_data)
+else:
+    print("Verifying appdata integrity...")
+    shutil.copytree(template_app_data, local_app_data, dirs_exist_ok=True, copy_function=copy_if_not_exists)
 
 from auratext.Core.window import Window
 

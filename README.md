@@ -103,7 +103,7 @@ With Aura Text, users can access a versatile and powerful editing environment. W
 Let's set up Aura Text on your PC!
 
 ### Prerequisites
-- Windows 10 x64 or later
+- Windows 10 x64 or later, a Linux distro running kernel 6.x or later, or macOS High Sierra or later 
 - Python 3.9 or later
 - Python installation is bootstrapped with pip
 - (Recommended) A fresh venv created with `python -m venv venv` and activated with `venv\Scripts\activate`
