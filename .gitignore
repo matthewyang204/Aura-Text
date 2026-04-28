@@ -214,11 +214,12 @@ __marimo__/
 Output/
 auratext/elements.db
 
+# GNU nano annoyances
+*.swp
+*.save
+
+
 # macOS annoyances
 .DS_Store
 ._*
 *DS_Store
-
-# GNU nano annoyances
-*.swp
-*.save
