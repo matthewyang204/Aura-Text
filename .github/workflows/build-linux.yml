@@ -38,7 +38,9 @@ jobs:
           qt6-base-dev-tools \
           qt6-tools-dev \
           qt6-tools-dev-tools \
-          build-essential
+          build-essential \
+          qmake6 qmake6-bin
+         cd /usr/bin && rm -rf qmake && ln -s qmake6 qmake && cd -
     - name: Install dependencies
       run: |
         python3 -m pip install --upgrade pip
