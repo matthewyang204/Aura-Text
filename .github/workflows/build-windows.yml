@@ -33,8 +33,22 @@ jobs:
     - name: Build Exe
       run:
         python build.py
+
+    - name: Compile Windows installer with Inno Setup
+      uses: Minionguyjpro/Inno-Setup-Action@v1.2.2
+      with:
+        path: Aura-Text-setup-x64.iss
+    
     - name: Upload ZIP
       uses: actions/upload-artifact@v4.3.1
       with:
         name: Aura-Text
         path: dist
+
+    - name: Upload installer
+      uses: actions/upload-artifact@v4.3.1
+      with:
+        name: Aura-Text-Installer-Output
+        path: Output
+        
+        
