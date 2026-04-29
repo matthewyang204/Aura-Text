@@ -40,7 +40,7 @@ jobs:
           qt6-tools-dev-tools \
           build-essential \
           qmake6 qmake6-bin
-         cd /usr/bin && rm -rf qmake && ln -s qmake6 qmake && cd -
+         cd /usr/bin && sudo rm -rf qmake && sudo ln -s qmake6 qmake && cd -
     - name: Install dependencies
       run: |
         python3 -m pip install --upgrade pip
