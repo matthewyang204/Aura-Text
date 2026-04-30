@@ -94,7 +94,7 @@ With Aura Text, users can access a versatile and powerful editing environment. W
 - Extremely customisable
   
 <!-- GETTING STARTED -->
-## 🏃 Getting Started
+## Getting Started
 
 Let's set up Aura Text on your PC!
 
@@ -129,12 +129,12 @@ We need the prerequisites above. After getting them, you can run the program wit
 
 <br>
 
-## 🧑🏻‍💻 Development 
+## Development 
 
 ![Alt](https://repobeats.axiom.co/api/embed/c478f91eea3690c7415f891646a2a15a62b4fb20.svg "Repobeats analytics image")
 <br>
 
-## 🛣️ Roadmap
+## Roadmap
 
 - <strike> Make a status bar at the bottom with features similar to PyCharm or other IDEs (Read-only toggle, breadcrumbs, etc) </strike>
 - <strike> Custom Theming </strike>
@@ -146,7 +146,7 @@ We need the prerequisites above. After getting them, you can run the program wit
 
 <!-- CONTRIBUTING -->
 
-## 🛂 Contributing
+## Contributing
 Contributions are what makes the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
 Don't forget to give the project a star! Thanks again!
@@ -165,7 +165,7 @@ Don't forget to give the project a star! Thanks again!
 <!-- GitAds-Verify: WQAFQASC2KGFLIXDWYMOWLYFQMBXX9GJ -->
 <!-- LICENSE -->
 
-## 🪪 License
+## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
