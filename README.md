@@ -67,7 +67,7 @@
 <br>
 <hr>
 <!-- ABOUT THE PROJECT -->
-<h2>📖 About The Project</h2>
+<h2>About The Project</h2>
 
 <img width="1920" height="1100" alt="image" src="https://github.com/user-attachments/assets/17399995-7032-4d90-957e-5cef278ceb6e" />
 <img width="1920" height="1100" alt="image" src="https://github.com/user-attachments/assets/7eb477ed-1469-4303-bce2-8124efcd8114" />
