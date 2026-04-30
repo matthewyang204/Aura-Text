@@ -36,10 +36,6 @@
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
-        <ul>
-        <li><a href="#with-nuitka">With Nuitka</a></li>
-        <li><a href="#-as-a-python-file">As a Python File</a></li>
-      </ul>
       </ul>
     </li>
     <li><a href="#development">Development</a></li>
