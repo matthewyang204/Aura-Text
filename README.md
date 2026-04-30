@@ -29,24 +29,19 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#-about-the-project">About The Project</a>
+      <a href="#about-the-project">About The Project</a>
     </li>
     <li>
-      <a href="#-getting-started">Getting Started</a>
+      <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
-        <ul>
-        <li><a href="#with-nuitka">With Nuitka</a></li>
-        <li><a href="#-as-a-python-file">As a Python File</a></li>
-      </ul>
       </ul>
     </li>
     <li><a href="#development">Development</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#-contributing">Contributing</a></li>
-    <li><a href="#-license">License</a></li>
-    <li><a href="#-contact">Contact</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
   </ol>
 </details>
 <!-- LANGUAGE SWITCHER -->
@@ -71,7 +66,7 @@
 <br>
 <hr>
 <!-- ABOUT THE PROJECT -->
-<h2>📖 About The Project</h2>
+<h2>About The Project</h2>
 
 <img width="1920" height="1100" alt="image" src="https://github.com/user-attachments/assets/17399995-7032-4d90-957e-5cef278ceb6e" />
 <img width="1920" height="1100" alt="image" src="https://github.com/user-attachments/assets/7eb477ed-1469-4303-bce2-8124efcd8114" />
@@ -98,7 +93,7 @@ With Aura Text, users can access a versatile and powerful editing environment. W
 - Extremely customisable
   
 <!-- GETTING STARTED -->
-## 🏃 Getting Started
+## Getting Started
 
 Let's set up Aura Text on your PC!
 
@@ -133,12 +128,12 @@ We need the prerequisites above. After getting them, you can run the program wit
 
 <br>
 
-## 🧑🏻‍💻 Development 
+## Development 
 
 ![Alt](https://repobeats.axiom.co/api/embed/c478f91eea3690c7415f891646a2a15a62b4fb20.svg "Repobeats analytics image")
 <br>
 
-## 🛣️ Roadmap
+## Roadmap
 
 - <strike> Make a status bar at the bottom with features similar to PyCharm or other IDEs (Read-only toggle, breadcrumbs, etc) </strike>
 - <strike> Custom Theming </strike>
@@ -150,7 +145,7 @@ We need the prerequisites above. After getting them, you can run the program wit
 
 <!-- CONTRIBUTING -->
 
-## 🛂 Contributing
+## Contributing
 Contributions are what makes the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
 Don't forget to give the project a star! Thanks again!
@@ -169,7 +164,7 @@ Don't forget to give the project a star! Thanks again!
 <!-- GitAds-Verify: WQAFQASC2KGFLIXDWYMOWLYFQMBXX9GJ -->
 <!-- LICENSE -->
 
-## 🪪 License
+## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
