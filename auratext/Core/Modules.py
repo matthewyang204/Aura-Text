@@ -302,18 +302,18 @@ def pastebin(self):
 
 def summary(self):
     doc = self.current_editor.document()
-    # char_count = self.current_editor.split(QRegularExpression("(\\s|\\n|\\r)+").QString.SkipEmptyParts).count()
+    char_count = self.current_editor.split(QRegularExpression("(\\s|\\n|\\r)+").QString.SkipEmptyParts).count()
     line_count = str(doc.blockCount())
-    # word_count = doc.wordCount()
+    word_count = doc.wordCount()
     text = (
             "Total Number of Lines: "
             + line_count
             + "\n"
             + "Total Character Count: "
-            + "char_count"
+            + char_count
             + "\n"
             + "Total Word Count: "
-            + "word_count"
+            + word_count
     )
     QMessageBox.information(self, "Summary", text)
 
