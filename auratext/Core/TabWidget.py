@@ -45,7 +45,10 @@ class TabWidget(QTabWidget):
         pixmap = QPixmap(tabRect.size())
         tabBar.render(pixmap, QPoint(), QRegion(tabRect))
         mimeData = QMimeData()
-        drag = QDrag(self); drag.setMimeData(mimeData); drag.exec()
+        
+        drag = QDrag(self)
+        drag.setMimeData(mimeData)
+        drag.exec()
 
     def contextMenuEvent(self, event):
         menu = QMenu(self)
