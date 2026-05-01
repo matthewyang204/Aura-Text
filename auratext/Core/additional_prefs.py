@@ -43,9 +43,9 @@ class SettingsWindow(QDialog):
         self.file_open_status = self._config["open_last_file"]
         print(self.exp_open_status)
 
-        self._config = {
-            "splash": "",
-        }
+        # self._config = {
+        #     "splash": "",
+        # }
 
         self.init_ui()
 
