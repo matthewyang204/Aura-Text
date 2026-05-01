@@ -61,10 +61,6 @@ class SettingsWindow(QDialog):
             True) if self.terminaltips_status == "True" else self.ttips_checkbox.setChecked(
             False)
 
-        self.ttips_checkbox.setChecked(
-            True) if self.terminaltips_status == "True" else self.ttips_checkbox.setChecked(
-            False)
-
         self.expopen_checkbox.setChecked(
             True) if self.exp_open_status == "True" else self.expopen_checkbox.setChecked(
             False)
