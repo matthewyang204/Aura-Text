@@ -247,7 +247,8 @@ QMenu::item::selected {{
 
     action_py = QAction("Python", self, checkable=True)
     action_py.triggered.connect(self.python)
-    self.action_group.addAction(action_py)
+    self.action_group.addAction(action_py)
+    action_py.setChecked(True)
 
     action_cpp = QAction("C++", self, checkable=True)
     action_cpp.triggered.connect(self.cpp)
@@ -264,16 +265,14 @@ QMenu::item::selected {{
     action_js = QAction("JavaScript", self, checkable=True)
     action_js.triggered.connect(self.js)
     self.action_group.addAction(action_js)
-    action_py.setChecked(True)
 
     action_bash = QAction("Bash", self, checkable=True)
-    action_js.triggered.connect(self.bash)
+    action_bash.triggered.connect(self.bash)
     self.action_group.addAction(action_bash)
 
     action_csharp = QAction("C#", self, checkable=True)
     action_csharp.triggered.connect(self.csharp)
     self.action_group.addAction(action_csharp)
-    action_py.setChecked(True)
 
     action_ruby = QAction("Ruby", self, checkable=True)
     action_ruby.triggered.connect(self.ruby)
@@ -312,33 +311,33 @@ QMenu::item::selected {{
     self.action_group.addAction(action_css)
 
     action_batch = QAction("Batch", self, checkable=True)
-    action_css.triggered.connect(self.batch)
+    action_batch.triggered.connect(self.batch)
     self.action_group.addAction(action_batch)
 
     action_avs = QAction("AVS", self, checkable=True)
-    action_css.triggered.connect(self.avs)
+    action_avs.triggered.connect(self.avs)
     self.action_group.addAction(action_avs)
 
     action_asm = QAction("ASM", self, checkable=True)
-    action_css.triggered.connect(self.asm)
+    action_asm.triggered.connect(self.asm)
     self.action_group.addAction(action_asm)
 
     action_cmake = QAction("CMake", self, checkable=True)
-    action_css.triggered.connect(self.cmake)
+    action_cmake.triggered.connect(self.cmake)
     self.action_group.addAction(action_cmake)
 
     action_postscript = QAction("PostScript", self, checkable=True)
     action_postscript.setIcon(QIcon("Resources/language_icons/logo_postscript.png"))
-    action_css.triggered.connect(self.postscript)
+    action_postscript.triggered.connect(self.postscript)
     self.action_group.addAction(action_postscript)
 
     action_coffeescript = QAction("CoffeeScript", self, checkable=True)
-    action_css.triggered.connect(self.coffeescript)
+    action_coffeescript.triggered.connect(self.coffeescript)
     self.action_group.addAction(action_coffeescript)
 
     action_srec = QAction("SREC", self, checkable=True)
-    action_css.triggered.connect(self.coffeescript)
-    self.action_group.addAction(action_coffeescript)
+    action_srec.triggered.connect(self.srec)
+    self.action_group.addAction(action_srec)
 
     action_sql = QAction("SQL", self, checkable=True)
     action_sql.triggered.connect(self.sql)
