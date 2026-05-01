@@ -5,7 +5,8 @@ import sys
 import platform
 
 from PyQt6.QtWidgets import QMenu
-from PyQt6.QtGui import QAction, QIcon
+from PyQt6.QtGui import QAction, QIcon
+from PyQt6.QtWidgets import QMessageBox
 
 from auratext.Misc.import_res import notepadequalequalComponentImportPathAppend
 sys.path.append(notepadequalequalComponentImportPathAppend)
