@@ -126,3 +126,19 @@ def is_under_parent_list(path, parent_dirs):
         return True
     else:
         return False
+
+def get_appdata_dirs():
+    if platform.system() == "Windows":
+        local_app_data = os.getenv('LOCALAPPDATA')
+    elif platform.system() == "Linux":
+        local_app_data = os.path.expanduser("~/.config")
+    elif platform.system() == "Darwin":
+        local_app_data = os.path.expanduser("~/Library/Application Support")
+    else:
+        print("Unsupported operating system")
+        sys.exit(1)
+
+    local_app_data = os.path.join(local_app_data, "AuraText")
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    
+    return local_app_data, script_dir
