@@ -160,7 +160,7 @@ class StatusBar(QStatusBar):
         self.editModeLabel.setFont(smallFont)
         self.editModeLabel.setStyleSheet(
             f"""
-            color: {"#FFFFFF;"};
+            color: #FFFFFF;
             font-weight: bold;
             margin-bottom: 5px;
             """
