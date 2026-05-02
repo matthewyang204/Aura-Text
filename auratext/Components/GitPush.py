@@ -55,9 +55,11 @@ class GitPushDialog(QDialog):
         push_button = QPushButton("Push")
         self.main_layout.addWidget(push_button)
         push_button.clicked.connect(self.push)
+        
+        self.notAGitRepoError = "Not a Git repository. Please initialize a Git repository."
 
         if not self.is_git_repo():
-            print(self, "Error", "Not a Git repository. Please initialize a Git repository.")
+            print(self, "Error", self.notAGitRepoError)
             self.reject()
             return
 
