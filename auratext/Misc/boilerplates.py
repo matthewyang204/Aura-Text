@@ -34,7 +34,9 @@ elif platform.system() == "Darwin":
 else:
     print("Unsupported operating system")
     sys.exit(1)
+
 local_app_data = os.path.join(local_app_data, "AuraText")
+script_dir = os.path.dirname(os.path.abspath(__file__))
 
 class BoilerPlate(QDialog):
     def __init__(self, current_editor):

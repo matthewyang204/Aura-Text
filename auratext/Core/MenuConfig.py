@@ -5,25 +5,17 @@ import sys
 import platform
 
 from PyQt6.QtWidgets import QMenu
-from PyQt6.QtGui import QAction, QIcon
+from PyQt6.QtGui import QAction, QIcon
+
 from PyQt6.QtWidgets import QMessageBox
 
 from auratext.Misc.import_res import notepadequalequalComponentImportPathAppend
+from auratext.Misc.boilerplates import get_appdata_dirs
 sys.path.append(notepadequalequalComponentImportPathAppend)
 
 from .plugin_interface import MenuPluginInterface
 from notepadequalequal.fileio import retrieve_file
-
-if platform.system() == "Windows":
-    local_app_data = os.getenv('LOCALAPPDATA')
-elif platform.system() == "Linux":
-    local_app_data = os.path.expanduser("~/.config")
-elif platform.system() == "Darwin":
-    local_app_data = os.path.expanduser("~/Library/Application Support")
-else:
-    print("Unsupported operating system")
-    sys.exit(1)
-local_app_data = os.path.join(local_app_data, "AuraText")
+local_app_data, script_dir = get_appdata_dirs()
 try:
     cpath = retrieve_file(f"{local_app_data}/data/CPath_Project.txt").strip()
 except (FileNotFoundError, OSError):
@@ -248,7 +240,8 @@ QMenu::item::selected {{
 
     action_py = QAction("Python", self, checkable=True)
     action_py.triggered.connect(self.python)
-    self.action_group.addAction(action_py)
+    self.action_group.addAction(action_py)
+
     action_py.setChecked(True)
 
     action_cpp = QAction("C++", self, checkable=True)
@@ -572,12 +565,18 @@ QMenu::item::selected {{
                             section = plugin.section
                             if section in sections:
                                 plugin.add_menu_items(sections[section])
-                except Exception as e:
-                    QMessageBox.critical(
-                        self,
-                        "Plugin Load Error",
-                        f"Error loading plugin '{plugin_module_name}':\n{e}"
-                    )
+                except Exception as e:
+
+                    QMessageBox.critical(
+
+                        self,
+
+                        "Plugin Load Error",
+
+                        f"Error loading plugin '{plugin_module_name}':\n{e}"
+
+                    )
+
 
     for section, submenu in sections.items():
         menubar.addMenu(submenu)

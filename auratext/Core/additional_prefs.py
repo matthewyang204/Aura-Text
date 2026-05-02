@@ -11,16 +11,9 @@ from PyQt6.QtWidgets import (
     QMessageBox,
 )
 
-if platform.system() == "Windows":
-    local_app_data = os.getenv('LOCALAPPDATA')
-elif platform.system() == "Linux":
-    local_app_data = os.path.expanduser("~/.config")
-elif platform.system() == "Darwin":
-    local_app_data = os.path.expanduser("~/Library/Application Support")
-else:
-    print("Unsupported operating system")
-    sys.exit(1)
-local_app_data = os.path.join(local_app_data, "AuraText")
+from auratext.Misc.boilerplates import get_appdata_dirs
+
+local_app_data, script_dir = get_appdata_dirs()
 
 
 class SettingsWindow(QDialog):

@@ -14,18 +14,9 @@ from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QFrame, QHBoxLayout, QLabel, QStatusBar, QWidget, QPushButton
 
 # from ..scripts.color_scheme_loader import color_schemes
-from auratext.Misc.boilerplates import get_font_for_platform
+from auratext.Misc.boilerplates import get_font_for_platform, get_appdata_dirs
 
-if platform.system() == "Windows":
-    local_app_data = os.getenv('LOCALAPPDATA')
-elif platform.system() == "Linux":
-    local_app_data = os.path.expanduser("~/.config")
-elif platform.system() == "Darwin":
-    local_app_data = os.path.expanduser("~/Library/Application Support")
-else:
-    print("Unsupported operating system")
-    sys.exit(1)
-local_app_data = os.path.join(local_app_data, "AuraText")
+local_app_data, script_dir = get_appdata_dirs()
 with open(f"{local_app_data}/data/theme.json", "r") as themes_file:
     _themes = json.load(themes_file)
 

@@ -10,17 +10,9 @@ from PyQt6.QtWidgets import (
     QVBoxLayout, QListWidget, QPushButton, QHBoxLayout, QMessageBox, QDialog, QLineEdit
 )
 from notepadequalequal.fileio import retrieve_file
+from auratext.Misc.boilerplates import get_appdata_dirs
 
-if platform.system() == "Windows":
-    local_app_data = os.getenv('LOCALAPPDATA')
-elif platform.system() == "Linux":
-    local_app_data = os.path.expanduser("~/.config")
-elif platform.system() == "Darwin":
-    local_app_data = os.path.expanduser("~/Library/Application Support")
-else:
-    print("Unsupported operating system")
-    sys.exit(1)
-local_app_data = os.path.join(local_app_data, "AuraText")
+local_app_data, script_dir = get_appdata_dirs()
 cpath = retrieve_file(f"{local_app_data}/data/CPath_Project.txt").strip()
 
 def check_folder_exists(folder_path):
