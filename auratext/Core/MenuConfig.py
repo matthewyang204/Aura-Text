@@ -7,22 +7,15 @@ import platform
 from PyQt6.QtWidgets import QMenu
 from PyQt6.QtGui import QAction, QIcon
 
+from PyQt6.QtWidgets import QMessageBox
+
 from auratext.Misc.import_res import notepadequalequalComponentImportPathAppend
+from auratext.Misc.boilerplates import get_appdata_dirs
 sys.path.append(notepadequalequalComponentImportPathAppend)
 
 from .plugin_interface import MenuPluginInterface
 from notepadequalequal.fileio import retrieve_file
-
-if platform.system() == "Windows":
-    local_app_data = os.getenv('LOCALAPPDATA')
-elif platform.system() == "Linux":
-    local_app_data = os.path.expanduser("~/.config")
-elif platform.system() == "Darwin":
-    local_app_data = os.path.expanduser("~/Library/Application Support")
-else:
-    print("Unsupported operating system")
-    sys.exit(1)
-local_app_data = os.path.join(local_app_data, "AuraText")
+local_app_data, script_dir = get_appdata_dirs()
 try:
     cpath = retrieve_file(f"{local_app_data}/data/CPath_Project.txt").strip()
 except (FileNotFoundError, OSError):
@@ -249,6 +242,8 @@ QMenu::item::selected {{
     action_py.triggered.connect(self.python)
     self.action_group.addAction(action_py)
 
+    action_py.setChecked(True)
+
     action_cpp = QAction("C++", self, checkable=True)
     action_cpp.triggered.connect(self.cpp)
     self.action_group.addAction(action_cpp)
@@ -264,16 +259,14 @@ QMenu::item::selected {{
     action_js = QAction("JavaScript", self, checkable=True)
     action_js.triggered.connect(self.js)
     self.action_group.addAction(action_js)
-    action_py.setChecked(True)
 
     action_bash = QAction("Bash", self, checkable=True)
-    action_js.triggered.connect(self.bash)
+    action_bash.triggered.connect(self.bash)
     self.action_group.addAction(action_bash)
 
     action_csharp = QAction("C#", self, checkable=True)
     action_csharp.triggered.connect(self.csharp)
     self.action_group.addAction(action_csharp)
-    action_py.setChecked(True)
 
     action_ruby = QAction("Ruby", self, checkable=True)
     action_ruby.triggered.connect(self.ruby)
@@ -312,33 +305,33 @@ QMenu::item::selected {{
     self.action_group.addAction(action_css)
 
     action_batch = QAction("Batch", self, checkable=True)
-    action_css.triggered.connect(self.batch)
+    action_batch.triggered.connect(self.batch)
     self.action_group.addAction(action_batch)
 
     action_avs = QAction("AVS", self, checkable=True)
-    action_css.triggered.connect(self.avs)
+    action_avs.triggered.connect(self.avs)
     self.action_group.addAction(action_avs)
 
     action_asm = QAction("ASM", self, checkable=True)
-    action_css.triggered.connect(self.asm)
+    action_asm.triggered.connect(self.asm)
     self.action_group.addAction(action_asm)
 
     action_cmake = QAction("CMake", self, checkable=True)
-    action_css.triggered.connect(self.cmake)
+    action_cmake.triggered.connect(self.cmake)
     self.action_group.addAction(action_cmake)
 
     action_postscript = QAction("PostScript", self, checkable=True)
     action_postscript.setIcon(QIcon("Resources/language_icons/logo_postscript.png"))
-    action_css.triggered.connect(self.postscript)
+    action_postscript.triggered.connect(self.postscript)
     self.action_group.addAction(action_postscript)
 
     action_coffeescript = QAction("CoffeeScript", self, checkable=True)
-    action_css.triggered.connect(self.coffeescript)
+    action_coffeescript.triggered.connect(self.coffeescript)
     self.action_group.addAction(action_coffeescript)
 
     action_srec = QAction("SREC", self, checkable=True)
-    action_css.triggered.connect(self.coffeescript)
-    self.action_group.addAction(action_coffeescript)
+    action_srec.triggered.connect(self.srec)
+    self.action_group.addAction(action_srec)
 
     action_sql = QAction("SQL", self, checkable=True)
     action_sql.triggered.connect(self.sql)
@@ -573,7 +566,17 @@ QMenu::item::selected {{
                             if section in sections:
                                 plugin.add_menu_items(sections[section])
                 except Exception as e:
-                    print(f"Error loading plugin {plugin_module_name}: {e}")
+
+                    QMessageBox.critical(
+
+                        self,
+
+                        "Plugin Load Error",
+
+                        f"Error loading plugin '{plugin_module_name}':\n{e}"
+
+                    )
+
 
     for section, submenu in sections.items():
         menubar.addMenu(submenu)

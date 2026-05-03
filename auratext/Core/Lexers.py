@@ -381,7 +381,7 @@ def verilog(self):
     lexer.setDefaultColor(QColor("#FFFFFF"))
     self.current_editor.setLexer(lexer)
     lexer.setPaper(QColor(self._themes["editor_theme"]))
-    lexer.setColor(QColor(self._themes["editor_theme"]), lexer.Comment)
+    lexer.setColor(QColor("#808080"), lexer.Comment)
     lexer.setColor(QColor("#FFA500"), lexer.Keyword)
     lexer.setFont(get_font_for_platform(size=14, plain=True))
 

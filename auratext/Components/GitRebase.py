@@ -1,7 +1,9 @@
+from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QDialog, QVBoxLayout, QLabel, QLineEdit, QPushButton, QTableWidget, QTableWidgetItem, QComboBox, QHeaderView, QMessageBox
 import subprocess
 import tempfile
 import os
+import platform
 
 class GitRebaseDialog(QDialog):
     def __init__(self, path):
@@ -115,12 +117,19 @@ class GitRebaseDialog(QDialog):
             with open(script_path, 'w') as f:
                 f.write(rebase_script)
 
-            # For Windows, we need to create a simple batch file to act as the editor
-            editor_script_path = os.path.join(tempfile.gettempdir(), 'auratext-rebase-editor.bat')
-            with open(editor_script_path, 'w') as f:
-                # The batch script will be called by git with the path to the git-rebase-todo file
-                # We overwrite that file with our generated script.
-                f.write(f'copy "{script_path}" %1 > NUL')
+            if platform.system() == "Windows":
+                # For Windows, we need to create a simple batch file to act as the editor
+                editor_script_path = os.path.join(tempfile.gettempdir(), 'auratext-rebase-editor.bat')
+                with open(editor_script_path, 'w') as f:
+                    # The batch script will be called by git with the path to the git-rebase-todo file
+                    # We overwrite that file with our generated script.
+                    f.write(f'copy "{script_path}" %1 > NUL')
+            else:
+                editor_script_path = os.path.join(tempfile.gettempdir(), 'auratext-rebase-editor.sh')
+                with open(editor_script_path, 'w') as f:
+                    unixRScriptContents = "#!/bin/sh" + '\n' + f'cp "{script_path}" "$1"' + "\n"
+                    f.write(unixRScriptContents)
+                    os.chmod(editor_script_path, 0o755)
 
             env = os.environ.copy()
             env["GIT_SEQUENCE_EDITOR"] = f'"{editor_script_path}"'

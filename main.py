@@ -3,6 +3,7 @@ import os
 import shutil
 import platform
 from auratext.Misc.quirks import copy_if_not_exists
+from auratext.Misc.boilerplates import get_appdata_dirs
 
 if platform.system() == "Linux":
     from auratext.Misc.quirks import get_linux_productname, crosvm_quirks
@@ -34,16 +35,7 @@ The app will automatically check system platform and set the local app data path
 It will then load the config and theme files to apply the user's settings and theme preferences.
 """
 
-if platform.system() == "Windows":
-    local_app_data = os.getenv('LOCALAPPDATA')
-elif platform.system() == "Linux":
-    local_app_data = os.path.expanduser("~/.config")
-elif platform.system() == "Darwin":
-    local_app_data = os.path.expanduser("~/Library/Application Support")
-else:
-    print("Unsupported operating system")
-    sys.exit(1)
-local_app_data = os.path.join(local_app_data, "AuraText")
+local_app_data, script_dir = get_appdata_dirs()
 
 template_app_data = os.path.join(os.path.dirname(sys.executable), "LocalAppData", "AuraText")
 if not os.path.exists(local_app_data):

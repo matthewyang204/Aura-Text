@@ -47,8 +47,7 @@ from . import PluginDownload
 from . import ThemeDownload
 from . import config_page
 from .CommandPalette import CommandPalette
-from ..Components import powershell, terminal, statusBar, ProjectManager, About, ToDo, GitGraph
-from ..Components import powershell, terminal, statusBar, ProjectManager, About, ToDo, GitGraph, GitRebase, Performance, DBViewer
+from ..Components import powershell, terminal, statusBar, ProjectManager, About, ToDo, GitGraph, GitRebase, Performance
 from ..Components.CommandPalette import CommandPalette
 from ..Components.NewProjectDialog import NewProjectDialog
 from ..Components.Linter import CodeLinter
@@ -63,21 +62,9 @@ from .AuraText import CodeEditor
 from auratext.Components.TabWidget import TabWidget
 from .plugin_interface import Plugin
 from notepadequalequal.fileio import retrieve_file
-from auratext.Misc.boilerplates import get_font_for_platform, pathspec_gitignore_parse, is_under_parent_list
+from auratext.Misc.boilerplates import get_font_for_platform, pathspec_gitignore_parse, is_under_parent_list, get_appdata_dirs
 
-if platform.system() == "Windows":
-    local_app_data = os.getenv('LOCALAPPDATA')
-elif platform.system() == "Linux":
-    local_app_data = os.path.expanduser("~/.config")
-elif platform.system() == "Darwin":
-    local_app_data = os.path.expanduser("~/Library/Application Support")
-else:
-    print("Unsupported operating system")
-    sys.exit(1)
-
-local_app_data = os.path.join(local_app_data, "AuraText")
-
-script_dir = os.path.dirname(os.path.abspath(__file__))
+local_app_data, script_dir = get_appdata_dirs()
 
 try:
     cpath = retrieve_file(f"{local_app_data}/data/CPath_Project.txt").strip()

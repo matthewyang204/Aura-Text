@@ -5,19 +5,11 @@ from PyQt6.QtWidgets import QVBoxLayout, QPushButton, QMessageBox, QLineEdit, QD
 import platform
 
 from auratext.Misc.import_res import notepadequalequalComponentImportPathAppend
+from auratext.Misc.boilerplates import get_appdata_dirs
 sys.path.append(notepadequalequalComponentImportPathAppend)
 from notepadequalequal.fileio import retrieve_file
 
-if platform.system() == "Windows":
-    local_app_data = os.getenv('LOCALAPPDATA')
-elif platform.system() == "Linux":
-    local_app_data = os.path.expanduser("~/.config")
-elif platform.system() == "Darwin":
-    local_app_data = os.path.expanduser("~/Library/Application Support")
-else:
-    print("Unsupported operating system")
-    sys.exit(1)
-local_app_data = os.path.join(local_app_data, "AuraText")
+local_app_data, script_dir = get_appdata_dirs()
 cpath = retrieve_file(f"{local_app_data}/data/CPath_Project.txt").strip()
 
 class GitPushDialog(QDialog):
@@ -55,9 +47,11 @@ class GitPushDialog(QDialog):
         push_button = QPushButton("Push")
         self.main_layout.addWidget(push_button)
         push_button.clicked.connect(self.push)
+        
+        self.notAGitRepoError = "Not a Git repository. Please initialize a Git repository."
 
         if not self.is_git_repo():
-            print(self, "Error", "Not a Git repository. Please initialize a Git repository.")
+            print(self, "Error", self.notAGitRepoError)
             self.reject()
             return
 
