@@ -1,11 +1,14 @@
 [tool.poetry]
 name = "aura-text"
-version = "2.0.0"
-description = "IDE built with PySide6"
+version = "5.4.1"
+description = "Aura Text is a versatile and powerful text editor powered by QScintilla that provides all the necessary tools for developers. It is build using PyQt6 and Python."
 authors = ["Rohan Kishore (@rohankishore on GitHub)"]
-license = "MIT"
+license = "GPL-3.0-or-later"
+license-files = ["LICENSE"]
 readme = "README.md"
-packages = [{include = "aura_text"}]
+repository = "https://github.com/rohankishore/Aura-Text"
+homepage = "https://github.com/rohankishore/Aura-Text"
+packages = [{ include = "auratext" }]
 
 [tool.poetry.dependencies]
 python = ">=3.7,<3.12"
