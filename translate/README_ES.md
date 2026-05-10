@@ -1,59 +1,49 @@
-<!-- LOGO DEL PROYECTO -->
+<!-- PROJECT LOGO -->
 <br />
 <div align="center">
-
   <h1 align="center">Aura Text</h1>
-
   ![AURA TEXT](https://github.com/rohankishore/Aura-Text/assets/109947257/9b59cf71-e8f7-4244-be38-0ab647d8ded8)
-
   <p align="center">
-    Un IDE hecho completamente con Python
+    An IDE made entirely with Python
     <br />
-    <a href="https://github.com/rohankishore/Aura-Text/wiki"><strong>Explora la documentación »</strong></a>
+    <a href="https://github.com/rohankishore/Aura-Text/wiki"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/rohankishore/Aura-Text/issues">Reportar error</a>
+    <a href="https://github.com/rohankishore/Aura-Text/issues">Report Bug</a>
     ·
-    <a href="https://github.com/rohankishore/Aura-Text/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=">Solicitar función</a>
+    <a href="https://github.com/rohankishore/Aura-Text/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=">Request Feature</a>
   </p>
 </div>
-
-<!-- TABLA DE CONTENIDOS -->
+<br>
+<hr>
+<!-- TABLE OF CONTENTS -->
 <details>
-  <summary>Tabla de Contenidos</summary>
+  <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#-acerca-del-proyecto">Acerca Del Proyecto</a>
+      <a href="#about-the-project">About The Project</a>
     </li>
     <li>
-      <a href="#-empezando">Empezando</a>
+      <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerrequisitos">Prerrequisitos</a></li>
-        <li><a href="#instalacion">Instalación</a></li>
-        <ul>
-        <li><a href="#con-nuitka">Con Nuitka</a></li>
-        <li><a href="#-como-un-archivo-python">Como un Archivo Python</a></li>
-      </ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#hoja-de-ruta">Hoja de Ruta</a></li>
-    <li><a href="#-contribuir">Contribuir</a></li>
-    <li><a href="#-licencia">Licencia</a></li>
-    <li><a href="#-contacto">Contacto</a></li>
+    <li><a href="#development">Development</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
   </ol>
 </details>
 
-<!-- CAMBIADOR DE IDIOMA -->
+<!-- LANGUAGE SWITCHER -->
 <details>
-  <summary>Ver el README en:</summary>
+  <summary>View the README In:</summary>
   <ol>
-    <li>
-      <a href="README_HN.md">हिन्दी 🇮🇳</a>
-    </li>
-    <li>
-      <a href="README_DE.md">Deutsch</a>
-    </li>
-    <li><a><strong>Español</strong></a></li>
+    <li><a href="README_HN.md">हिन्दी 🇮🇳</a></li>
+    <li><a href="README_DE.md">Deutsch</a></li>
+    <li><a href="README_ES.md">Español</a></li>
     <li><a href="README_TA.md">தமிழ் 🇮🇳</a></li>
     <li><a href="README_FR.md">Français</a></li>
     <li><a href="README_JA.md">日本語</a></li>
@@ -63,81 +53,38 @@
   </ol>
 </details>
 
-<br>
+## About The Project
 
-<!-- ACERCA DEL PROYECTO -->
-## 📖 Acerca Del Proyecto
+Aura Text is an excellent text/code editor that offers a wide array of essential tools. Built with PyQt6 and Python, it harnesses the power and flexibility of these technologies.
 
-![imagen](https://github.com/rohankishore/Aura-Text/assets/109947257/de7346a7-f967-4035-8159-af5ed07990bf)
+## Getting Started
 
-![imagen](https://github.com/rohankishore/Aura-Text/assets/109947257/bdbb4351-df63-4b14-8027-dfca036955e5)
+Let's set up Aura Text on your PC!
 
-Aura Text es un excelente editor de texto/código que ofrece una amplia gama de herramientas esenciales. Construido con PyQt6 y Python, aprovecha la potencia y flexibilidad de estas tecnologías.
+### Prerequisites
+- Windows 10 x64 or later, a Linux distro running kernel 6.x or later, or macOS Ventura or later
+- Python 3.9 or later
+- Python installation is bootstrapped with pip
+- (Recommended) A fresh venv created with `python -m venv venv` and activated with `venv\Scripts\activate`
+- The contents of `requirements.txt` installed via `pip install -r requirements.txt`
 
-Con Aura Text, los usuarios obtienen acceso a un entorno de edición versátil y potente. Ya sea que estés trabajando en un pequeño script o en un proyecto complejo, Aura Text te proporciona todas las funciones necesarias para agilizar tu flujo de trabajo. Desde resaltado de sintaxis y autocompletado de código hasta sangría inteligente y terminal avanzado, Aura Text asegura que tu experiencia de codificación sea eficiente y placentera, al mismo tiempo que es extremadamente ligero en tu PC.
+### Installation
 
-<br>
+You can download a prebuilt installer from the Releases or build one yourself.
 
-<!-- EMPEZANDO -->
-## 🏃 Empezando
+#### Building the installer
+1. Clone the repo or download a tarball
+2. Install all prerequisites
+3. `python build.py` to compile the program first
+4. Open up the `.iss` Inno Setup script and compile it via Ctrl+F9 or `Build > Compile` - installer can be found in `Output` folder
 
-¡Vamos a configurar Aura Text en tu PC!
+## Development
 
-### Prerrequisitos
+## Roadmap
+- Project Manager
 
-Ejecuta este comando en tu terminal para instalar las dependencias de una vez:
-  ```sh
-  pip install -r requirements.txt
-```
+## Contributing
+Contributions are what makes the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-### Instalación
-
-#### Con Nuitka
-
-_A continuación se muestra un ejemplo de cómo puedes construir Aura Text utilizando Nuitka_
-
-- Descarga/Clona este repositorio
-- Mueve la carpeta `AuraText` de la carpeta `LocalAppData` a la carpeta `AppData/Local`.
-- Instala Nuitka (`python -m pip install nuitka`)
-- `python -m nuitka --windows-disable-console .\main.py`
-
-#### 🐍 Como Archivo Python
-
-- Descarga/Clona este repositorio
-- Mueve la carpeta `AuraText` de la carpeta `LocalAppData` a la carpeta `AppData/Local`.
-- `python -m main.py`
-
-<br>
-
-## Hoja de Ruta
-
-- Crear una barra de estado en la parte inferior con características similares a PyCharm u otros IDEs (interruptor de solo lectura, migas de pan, etc.).
-- <strike> Temas personalizados </strike>
-- <strike> Emulación de teclas </strike>
-- Edición dividida
-- <strike> Linting de código Python </strike>
-
-<b> ¡Y mucho, mucho más... </b>
-
-<b>
-
-<!-- Contribuir -->
-## 🛂 Contribuir
-
-Las contribuciones son lo que hace que la comunidad de código abierto sea un lugar tan increíble para aprender, inspirar y crear. Cualquier contribución que hagas es **muy apreciada**.
-
-Si tienes una sugerencia que mejoraría esto, por favor haz un fork del repositorio y crea una solicitud de extracción. También puedes abrir simplemente un problema con la etiqueta "mejora".
-¡No olvides darle una estrella al proyecto! ¡Gracias de nuevo!
-
-1. Haz un fork del proyecto
-2. Crea tu rama de funcionalidad (`git checkout -b feature/AmazingFeature`)
-3. Realiza tus cambios (`git commit -m 'Agregar alguna AmazingFeature'`)
-4. Haz push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre una solicitud de extracción
-
-<b>
-
-<!-- Licencia -->
-## 🪪 Licencia
-
-Distribuido bajo la Licencia MIT. Consulta `LICENSE.txt` para obtener más información.
+## License
+Distributed under the MIT License. See `LICENSE.txt` for more information.
