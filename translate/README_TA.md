@@ -10,43 +10,51 @@
   </a>  <a href='https://ko-fi.com/V7V7QZ7GS' target='_blank'><img height='10' style='border:0px;height:22px;' src='https://storage.ko-fi.com/cdn/kofi5.png?v=3' border='1' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
   <p align="center">
-    An IDE made entirely with Python
-    <br />
-    <a href="https://github.com/rohankishore/Aura-Text/wiki"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/rohankishore/Aura-Text/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/rohankishore/Aura-Text/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=">Request Feature</a>
-  </p>
-</div>
-
-![Alt](https://repobeats.axiom.co/api/embed/c478f91eea3690c7415f891646a2a15a62b4fb20.svg "Repobeats analytics image")
-<br />
-<div align="center">
-  <h1 align="center">Aura Text</h1>
-  ![AURA TEXT](https://github.com/rohankishore/Aura-Text/assets/109947257/9b59cf71-e8f7-4244-be38-0ab647d8ded8)
-  <p align="center">
-    தமிழ் மொழி
+    Aura Text தமிழில்
     <br />
     <a href="https://github.com/rohankishore/Aura-Text/wiki"><strong>ஆவணங்களை பார்க்க »</strong></a>
   </p>
 </div>
 
-## திட்டம் பற்றிக்
+---
 
-Aura Text PyQt6 மற்றும் Python கொண்டு உருவாக்கப்பட்ட ஒரு சிறந்த குறியீடு/உரை எடிட்டர்.
+## 📖 திட்டத்தைப் பற்றி
 
-## தொடங்குதல்
+Aura Text PyQt6 மற்றும் Python கொண்டு உருவாக்கப்பட்ட ஒரு குறியீடு/உரை எடிட்டர்.
+
+## 🏃 தொடங்குதல்
 
 ### முன்நிபந்தனைகள்
-- Windows 10 x64 அல்லது மேல், Linux kernel 6.x அல்லது மேல் அல்லது macOS Ventura அல்லது மேல்
+- Windows 10 x64 அல்லது மேல், Linux kernel 6.x அல்லது மேல், அல்லது macOS Ventura அல்லது மேல்
 - Python 3.9 அல்லது மேல்
-- `python -m venv venv` கொண்டு venv உருவாக்கி `venv\Scripts\activate` மூலம் செயல்படுத்தவும்
-- `pip install -r requirements.txt` மூலம் சார்புகளை நிறுவவும்
+- (பரிந்துரைக்கப்படுகிறது) venv உருவாக்கி செயல்படுத்தவும்: `python -m venv venv` மற்றும் `venv\Scripts\activate`
+- சார்புகளை நிறுவவும்: `pip install -r requirements.txt`
+
+### நிறுவல்
+
+Releases இல் இருந்து முன்கட்டமைக்கப்பட்ட இன்ஸ்டல்லரை பதிவிறக்கவும் அல்லது உங்கள் கணினியில் கட்டமைக்கவும்.
+
+#### இன்ஸ்டல்லரை கட்டமைத்தல்
+1. ரெப்போவை கிளோன் செய்யவும் அல்லது tarball ஐ பதிவிறக்கவும்
+2. அனைத்து முன்நிபந்தனைகளையும் நிறுவவும்
+3. முதலில் நிரலை தொகுக்க `python build.py` இயக்கு
+4. `.iss` Inno Setup ஸ்கிரிப்டை திறந்து Ctrl+F9 அல்லது `Build > Compile` மூலம் தொகுக்கவும் — இன்ஸ்டல்லர் `Output` கோப்புறையில் காணப்படும்
+
+##### இன்ஸ்டல்லரை பயன்படுத்துதல்
+
+உற்பத்தி செய்யப்பட்ட `.exe` ஐ இயக்கவும்.
+
+### சோதனை
+
+சோதனைக்காக: `pythonw main.py` (லாக் இல்லாமல்) அல்லது `python main.py` (டீபக்)
+
+## 🧑‍💻 வளர்ச்சி
+
+## வழிகாட்டி
+- Project Manager
 
 ## பங்களிப்பு
-貢献歓迎
+பங்களிப்புகள் வரவேற்கப்படுகின்றன. Fork, branch, commit, PR.
 
-## உரிமம்
-MIT உரிமம்.
+## 🪪 உரிமம்
+MIT உரிமம். `LICENSE.txt` பார்க்கவும்.

@@ -10,45 +10,51 @@
   </a>  <a href='https://ko-fi.com/V7V7QZ7GS' target='_blank'><img height='10' style='border:0px;height:22px;' src='https://storage.ko-fi.com/cdn/kofi5.png?v=3' border='1' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
   <p align="center">
-    An IDE made entirely with Python
-    <br />
-    <a href="https://github.com/rohankishore/Aura-Text/wiki"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/rohankishore/Aura-Text/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/rohankishore/Aura-Text/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=">Request Feature</a>
-  </p>
-</div>
-
-![Alt](https://repobeats.axiom.co/api/embed/c478f91eea3690c7415f891646a2a15a62b4fb20.svg "Repobeats analytics image")
-<br />
-<div align="center">
-  <h1 align="center">Aura Text</h1>
-  ![AURA TEXT](https://github.com/rohankishore/Aura-Text/assets/109947257/9b59cf71-e8f7-4244-be38-0ab647d8ded8)
-  <p align="center">
     简体中文
     <br />
     <a href="https://github.com/rohankishore/Aura-Text/wiki"><strong>探索文档 »</strong></a>
   </p>
 </div>
 
-## 关于本项目
+---
 
-Aura Text 是一个由 PyQt6 和 Python 构建的优秀文本/代码编辑器。
+## 📖 关于本项目
 
-## 快速开始
+Aura Text 是由 PyQt6 和 Python 构建的文本/代码编辑器，具有许多有用的工具。
+
+## 🏃 快速开始
 
 ### 先决条件
 - Windows 10 x64 或更高、内核 6.x 或更高的 Linux 发行版，或 macOS Ventura 或更高
 - Python 3.9 或更高
-- （推荐）使用 `python -m venv venv` 创建 venv 并使用 `venv\Scripts\activate` 激活
-- 通过 `pip install -r requirements.txt` 安装依赖
+- （推荐）创建并激活 venv：`python -m venv venv` 和 `venv\Scripts\activate`
+- 安装依赖：`pip install -r requirements.txt`
 
-## 开发
+### 安装
+
+可以从 Releases 下载预构建安装程序，或自行构建。
+
+#### 构建安装程序
+1. 克隆仓库或下载 tarball
+2. 安装所有先决条件
+3. 运行 `python build.py` 来先编译程序
+4. 打开 `.iss` Inno Setup 脚本并通过 Ctrl+F9 或 `Build > Compile` 编译 — 安装程序会在 `Output` 文件夹中
+
+##### 使用安装程序
+
+运行生成的 `.exe`。
+
+### 测试
+
+测试用：`pythonw main.py`（无日志）或 `python main.py`（调试用）
+
+## 🧑‍💻 开发
+
+## 路线图
+- Project Manager
 
 ## 贡献
-欢迎贡献。
+欢迎贡献。Fork、branch、commit、PR。
 
-## 许可证
-在 MIT 许可证下分发。请参阅 `LICENSE.txt`。
+## 🪪 许可证
+在 MIT 许可证下分发。参见 `LICENSE.txt`。

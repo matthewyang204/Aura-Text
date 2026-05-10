@@ -10,45 +10,51 @@
   </a>  <a href='https://ko-fi.com/V7V7QZ7GS' target='_blank'><img height='10' style='border:0px;height:22px;' src='https://storage.ko-fi.com/cdn/kofi5.png?v=3' border='1' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
   <p align="center">
-    An IDE made entirely with Python
+    Uma IDE feita inteiramente com Python
     <br />
-    <a href="https://github.com/rohankishore/Aura-Text/wiki"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/rohankishore/Aura-Text/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/rohankishore/Aura-Text/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=">Request Feature</a>
+    <a href="https://github.com/rohankishore/Aura-Text/wiki"><strong>Explorar a documentação »</strong></a>
   </p>
 </div>
 
-![Alt](https://repobeats.axiom.co/api/embed/c478f91eea3690c7415f891646a2a15a62b4fb20.svg "Repobeats analytics image")
-<br />
-<div align="center">
-  <h1 align="center">Aura Text</h1>
-  ![AURA TEXT](https://github.com/rohankishore/Aura-Text/assets/109947257/9b59cf71-e8f7-4244-be38-0ab647d8ded8)
-  <p align="center">
-    Un IDE hecho completamente con Python
-    <br />
-    <a href="https://github.com/rohankishore/Aura-Text/wiki"><strong>Explora la documentación »</strong></a>
-  </p>
-</div>
+---
 
-## Acerca del proyecto
+## 📖 Sobre o Projeto
 
-Aura Text es un excelente editor de texto/código construido con PyQt6 y Python.
+Aura Text é um editor de texto/código construído com PyQt6 e Python, com muitas ferramentas úteis.
 
-## Empezando
+## 🏃 Primeiro Passos
 
-### Prerrequisitos
-- Windows 10 x64 o posterior, una distro Linux con kernel 6.x o posterior, o macOS Ventura o posterior
-- Python 3.9 o posterior
-- (Recomendado) crea un venv con `python -m venv venv` y actívalo con `venv\Scripts\activate`
-- Instala las dependencias con `pip install -r requirements.txt`
+### Pré-requisitos
+- Windows 10 x64 ou posterior, distro Linux com kernel 6.x ou posterior, ou macOS Ventura ou posterior
+- Python 3.9 ou posterior
+- (Recomendado) Crie e ative um venv: `python -m venv venv` e `venv\Scripts\activate`
+- Instale dependências: `pip install -r requirements.txt`
 
-## Desarrollo
+### Instalação
+
+Você pode baixar um instalador pré-compilado dos Releases ou construir um localmente.
+
+#### Construir o instalador
+1. Clone o repo ou baixe o tarball
+2. Instale todos os pré-requisitos
+3. Execute `python build.py` para compilar
+4. Abra o script Inno Setup `.iss` e compile com Ctrl+F9 ou `Build > Compile` — o instalador estará em `Output`
+
+##### Usar o instalador
+
+Execute o `.exe` gerado.
+
+### Testes
+
+Para testes: `pythonw main.py` (sem logs) ou `python main.py` (para debug)
+
+## 🧑‍💻 Desenvolvimento
+
+## Roteiro
+- Project Manager
 
 ## Contribuir
-Las contribuciones son muy apreciadas.
+Contribuições são bem-vindas. Fork, branch, commit, PR.
 
-## Licencia
-Distribuido bajo la Licencia MIT. Ver `LICENSE.txt`.
+## 🪪 Licença
+Distribuído sob MIT. Ver `LICENSE.txt`.

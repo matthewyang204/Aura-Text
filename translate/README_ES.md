@@ -10,104 +10,56 @@
   </a>  <a href='https://ko-fi.com/V7V7QZ7GS' target='_blank'><img height='10' style='border:0px;height:22px;' src='https://storage.ko-fi.com/cdn/kofi5.png?v=3' border='1' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
   <p align="center">
-    An IDE made entirely with Python
+    Un IDE hecho completamente con Python
     <br />
-    <a href="https://github.com/rohankishore/Aura-Text/wiki"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/rohankishore/Aura-Text/wiki"><strong>Explora la documentación »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/rohankishore/Aura-Text/issues">Report Bug</a>
+    <a href="https://github.com/rohankishore/Aura-Text/issues">Reportar error</a>
     ·
-    <a href="https://github.com/rohankishore/Aura-Text/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=">Request Feature</a>
+    <a href="https://github.com/rohankishore/Aura-Text/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=">Solicitar función</a>
   </p>
 </div>
 
-![Alt](https://repobeats.axiom.co/api/embed/c478f91eea3690c7415f891646a2a15a62b4fb20.svg "Repobeats analytics image")
-<br />
-<div align="center">
-  <h1 align="center">Aura Text</h1>
-  ![AURA TEXT](https://github.com/rohankishore/Aura-Text/assets/109947257/9b59cf71-e8f7-4244-be38-0ab647d8ded8)
-  <p align="center">
-    An IDE made entirely with Python
-    <br />
-    <a href="https://github.com/rohankishore/Aura-Text/wiki"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/rohankishore/Aura-Text/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/rohankishore/Aura-Text/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=">Request Feature</a>
-  </p>
-</div>
-<br>
-<hr>
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#development">Development</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-  </ol>
-</details>
+---
 
-<!-- LANGUAGE SWITCHER -->
-<details>
-  <summary>View the README In:</summary>
-  <ol>
-    <li><a href="README_HN.md">हिन्दी 🇮🇳</a></li>
-    <li><a href="README_DE.md">Deutsch</a></li>
-    <li><a href="README_ES.md">Español</a></li>
-    <li><a href="README_TA.md">தமிழ் 🇮🇳</a></li>
-    <li><a href="README_FR.md">Français</a></li>
-    <li><a href="README_JA.md">日本語</a></li>
-    <li><a href="README_PT.md">Português</a></li>
-    <li><a href="README_RU.md">Русский</a></li>
-    <li><a href="ZH-CN/README_ZH-CN.md">简体中文</a></li>
-  </ol>
-</details>
+## 📖 Acerca Del Proyecto
 
-## About The Project
+Aura Text es un editor de texto/código construido con PyQt6 y Python que ofrece muchas herramientas útiles.
 
-Aura Text is an excellent text/code editor that offers a wide array of essential tools. Built with PyQt6 and Python, it harnesses the power and flexibility of these technologies.
+## 🏃 Empezando
 
-## Getting Started
+### Prerrequisitos
+- Windows 10 x64 o posterior, una distro Linux con Kernel 6.x o posterior, o macOS Ventura o posterior
+- Python 3.9 o posterior
+- (Recomendado) Crear y activar un venv: `python -m venv venv` y `venv\Scripts\activate`
+- Instalar dependencias: `pip install -r requirements.txt`
 
-Let's set up Aura Text on your PC!
+### Instalación
 
-### Prerequisites
-- Windows 10 x64 or later, a Linux distro running kernel 6.x or later, or macOS Ventura or later
-- Python 3.9 or later
-- Python installation is bootstrapped with pip
-- (Recommended) A fresh venv created with `python -m venv venv` and activated with `venv\Scripts\activate`
-- The contents of `requirements.txt` installed via `pip install -r requirements.txt`
+Puedes descargar un instalador precompilado desde Releases o construir uno tú mismo.
 
-### Installation
+#### Construir el instalador
+1. Clona el repositorio o descarga el tarball
+2. Instala los prerrequisitos
+3. Ejecuta `python build.py` para compilar primero
+4. Abre el script `.iss` de Inno Setup y compílalo con Ctrl+F9 o `Build > Compile` — el instalador aparecerá en la carpeta `Output`
 
-You can download a prebuilt installer from the Releases or build one yourself.
+##### Usar el instalador
 
-#### Building the installer
-1. Clone the repo or download a tarball
-2. Install all prerequisites
-3. `python build.py` to compile the program first
-4. Open up the `.iss` Inno Setup script and compile it via Ctrl+F9 or `Build > Compile` - installer can be found in `Output` folder
+Ejecuta el archivo `.exe` generado.
 
-## Development
+### Pruebas
 
-## Roadmap
+Para ejecutar sin instalar (pruebas): `pythonw main.py` (sin logs) o `python main.py` (para depuración)
+
+## 🧑‍💻 Desarrollo
+
+## Hoja de Ruta
 - Project Manager
 
-## Contributing
-Contributions are what makes the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+## 🛂 Contribuir
+Las contribuciones son muy apreciadas. Haz un fork, crea una rama, realiza commits y abre un PR.
 
-## License
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+## 🪪 Licencia
+Distribuido bajo la Licencia MIT. Ver `LICENSE.txt`.

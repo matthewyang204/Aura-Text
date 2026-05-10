@@ -10,45 +10,51 @@
   </a>  <a href='https://ko-fi.com/V7V7QZ7GS' target='_blank'><img height='10' style='border:0px;height:22px;' src='https://storage.ko-fi.com/cdn/kofi5.png?v=3' border='1' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
   <p align="center">
-    An IDE made entirely with Python
-    <br />
-    <a href="https://github.com/rohankishore/Aura-Text/wiki"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/rohankishore/Aura-Text/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/rohankishore/Aura-Text/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=">Request Feature</a>
-  </p>
-</div>
-
-![Alt](https://repobeats.axiom.co/api/embed/c478f91eea3690c7415f891646a2a15a62b4fb20.svg "Repobeats analytics image")
-<br />
-<div align="center">
-  <h1 align="center">Aura Text</h1>
-  ![AURA TEXT](https://github.com/rohankishore/Aura-Text/assets/109947257/9b59cf71-e8f7-4244-be38-0ab647d8ded8)
-  <p align="center">
-    हिन्दी अनुवाद
+    Aura Text का हिन्दी अनुवाद
     <br />
     <a href="https://github.com/rohankishore/Aura-Text/wiki"><strong>डॉक्यूमेंट देखें »</strong></a>
   </p>
 </div>
 
-## परियोजना के बारे में
+---
 
-Aura Text PyQt6 और Python के साथ बनाया गया एक उत्कृष्ट टेक्स्ट/कोड संपादक है।
+## 📖 परियोजना के बारे में
 
-## शुरू करना
+Aura Text PyQt6 और Python के साथ बनाया गया एक टेक्स्ट/कोड संपादक है।
+
+## 🏃 शुरुआत करना
 
 ### पूर्वापेक्षाएँ
 - Windows 10 x64 या बाद का, Linux kernel 6.x या बाद, या macOS Ventura या बाद
 - Python 3.9 या बाद
-- `python -m venv venv` से venv बनाकर `venv\Scripts\activate` से सक्रिय करें (अनुशंसित)
-- `pip install -r requirements.txt` के साथ निर्भरता स्थापित करें
+- (अनुशंसित) venv बनाएं और सक्रिय करें: `python -m venv venv` और `venv\Scripts\activate`
+- निर्भरता स्थापित करें: `pip install -r requirements.txt`
 
-## विकास
+### स्थापना
+
+रिलीज़ से पूर्व-निर्मित इंस्टॉलर डाउनलोड करें या स्वयं बनाएं।
+
+#### इंस्टॉलर बनाना
+1. रिपॉ क्लोन करें या टारबॉल डाउनलोड करें
+2. सभी निर्भरताएँ इंस्टॉल करें
+3. `python build.py` चलाएँ
+4. `.iss` Inno Setup स्क्रिप्ट खोलें और Ctrl+F9 या `Build > Compile` से कंपाइल करें — इंस्टॉलर `Output` में मिलेगा
+
+##### इंस्टॉलर उपयोग
+
+उत्पन्न `.exe` चलाएँ।
+
+### परीक्षण
+
+टेस्ट के लिए: `pythonw main.py` (बिना लॉग) या `python main.py` (डीबग)
+
+## 🧑‍💻 विकास
+
+## रोडमैप
+- Project Manager
 
 ## योगदान
-योगदानों का स्वागत है।
+योगदान स्वागत है। Fork, branch, commit, PR.
 
-## लाइसेंस
-MIT लाइसेंस के तहत वितरित। `LICENSE.txt` देखें।
+## 🪪 लाइसेंस
+MIT लाइसेंस। `LICENSE.txt` देखें।
