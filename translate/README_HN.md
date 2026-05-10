@@ -2,6 +2,23 @@
 <br />
 <div align="center">
   <h1 align="center">Aura Text</h1>
+
+  ![AURA TEXT](https://github.com/rohankishore/Aura-Text/assets/109947257/9b59cf71-e8f7-4244-be38-0ab647d8ded8)
+
+  <p align="center">
+    An IDE made entirely with Python
+    <br />
+    <a href="https://github.com/rohankishore/Aura-Text/wiki"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/rohankishore/Aura-Text/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/rohankishore/Aura-Text/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=">Request Feature</a>
+  </p>
+</div>
+<br />
+<div align="center">
+  <h1 align="center">Aura Text</h1>
   ![AURA TEXT](https://github.com/rohankishore/Aura-Text/assets/109947257/9b59cf71-e8f7-4244-be38-0ab647d8ded8)
   <p align="center">
     हिन्दी अनुवाद
