@@ -18,11 +18,11 @@
 
 ---
 
-## 📖 关于本项目
+## 关于本项目
 
 Aura Text 是由 PyQt6 和 Python 构建的文本/代码编辑器，具有许多有用的工具。
 
-## 🏃 快速开始
+## 快速开始
 
 ### 先决条件
 - Windows 10 x64 或更高、内核 6.x 或更高的 Linux 发行版，或 macOS Ventura 或更高
@@ -48,7 +48,10 @@ Aura Text 是由 PyQt6 和 Python 构建的文本/代码编辑器，具有许多
 
 测试用：`pythonw main.py`（无日志）或 `python main.py`（调试用）
 
-## 🧑‍💻 开发
+## 开发
+
+![Alt](https://repobeats.axiom.co/api/embed/c478f91eea3690c7415f891646a2a15a62b4fb20.svg "Repobeats analytics image")
+<br>
 
 ## 路线图
 - Project Manager

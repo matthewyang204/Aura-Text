@@ -23,11 +23,11 @@
 
 ---
 
-## 📖 Über das Projekt
+## Über das Projekt
 
 Aura Text ist ein Text-/Code-Editor, gebaut mit PyQt6 und Python, der viele nützliche Werkzeuge bietet.
 
-## 🏃 Erste Schritte
+## Erste Schritte
 
 ### Voraussetzungen
 - Windows 10 x64 oder neuer, eine Linux-Distribution mit Kernel 6.x oder neuer, oder macOS Ventura oder neuer
@@ -53,7 +53,10 @@ Führe die erzeugte `.exe` aus.
 
 Für Tests: `pythonw main.py` (ohne Logs) oder `python main.py` (mit Debug)
 
-## 🧑‍💻 Entwicklung
+## Entwicklung
+
+![Alt](https://repobeats.axiom.co/api/embed/c478f91eea3690c7415f891646a2a15a62b4fb20.svg "Repobeats analytics image")
+<br>
 
 ## Roadmap
 - Project Manager

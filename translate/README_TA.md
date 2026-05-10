@@ -18,11 +18,11 @@
 
 ---
 
-## 📖 திட்டத்தைப் பற்றி
+## திட்டத்தைப் பற்றி
 
 Aura Text PyQt6 மற்றும் Python கொண்டு உருவாக்கப்பட்ட ஒரு குறியீடு/உரை எடிட்டர்.
 
-## 🏃 தொடங்குதல்
+## தொடங்குதல்
 
 ### முன்நிபந்தனைகள்
 - Windows 10 x64 அல்லது மேல், Linux kernel 6.x அல்லது மேல், அல்லது macOS Ventura அல்லது மேல்
@@ -48,7 +48,10 @@ Releases இல் இருந்து முன்கட்டமைக்க
 
 சோதனைக்காக: `pythonw main.py` (லாக் இல்லாமல்) அல்லது `python main.py` (டீபக்)
 
-## 🧑‍💻 வளர்ச்சி
+## வளர்ச்சி
+
+![Alt](https://repobeats.axiom.co/api/embed/c478f91eea3690c7415f891646a2a15a62b4fb20.svg "Repobeats analytics image")
+<br>
 
 ## வழிகாட்டி
 - Project Manager

@@ -18,11 +18,11 @@
 
 ---
 
-## 📖 परियोजना के बारे में
+## परियोजना के बारे में
 
 Aura Text PyQt6 और Python के साथ बनाया गया एक टेक्स्ट/कोड संपादक है।
 
-## 🏃 शुरुआत करना
+## शुरुआत करना
 
 ### पूर्वापेक्षाएँ
 - Windows 10 x64 या बाद का, Linux kernel 6.x या बाद, या macOS Ventura या बाद
@@ -48,7 +48,10 @@ Aura Text PyQt6 और Python के साथ बनाया गया एक 
 
 टेस्ट के लिए: `pythonw main.py` (बिना लॉग) या `python main.py` (डीबग)
 
-## 🧑‍💻 विकास
+## विकास
+
+![Alt](https://repobeats.axiom.co/api/embed/c478f91eea3690c7415f891646a2a15a62b4fb20.svg "Repobeats analytics image")
+<br>
 
 ## रोडमैप
 - Project Manager
