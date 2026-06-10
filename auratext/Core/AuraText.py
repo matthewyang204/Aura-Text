@@ -486,3 +486,26 @@ class CodeEditor(QsciScintilla):
         if '    ' in text:
             self.setIndentationsUseTabs(False)
         self.qscinsert(text)
+
+    def _get_tab_index(self) -> int:
+        window_inst = self.window()
+        container = self.parentWidget()
+        if not window_inst or not container:
+            return -1
+        return window_inst.tab_widget.indexOf(container)
+
+    def _get_file_path(self) -> str:
+        idx = self._get_tab_index()
+        if idx == -1:
+            return ""
+        return self.window().tab_file_paths.get(idx, "")
+
+    def _get_tab_title(self) -> str:
+        idx = self._get_tab_index()
+        if idx == -1:
+            return ""
+        return str(self.window().tab_widget.tabText(idx))
+
+    # alias for public use by other components
+    def title(self) -> str:
+        return self._get_tab_title()
