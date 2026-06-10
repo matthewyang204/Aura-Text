@@ -565,14 +565,15 @@ QMenu::item::selected {{
                                 plugin.add_menu_items(sections[section])
                 except Exception as e:
                     error = str(e)
-                    def pluginLoadError(selfObject, plugin_module_name, e):
+                    exceptionType = type(e).__name__
+                    def pluginLoadError(selfObject, plugin_module_name, e, exceptionType):
                         QMessageBox.warning(
                             selfObject,
-                            "Non-Critical Plugin Load Error",
-                            f"Error loading plugin '{plugin_module_name}':\n{e}"
+                            f"Non-Critical Plugin Load {exceptionType}",
+                            f"Error loading plugin '{plugin_module_name}':\n{e}\n\nError Type: {exceptionType}\n\nThis plugin will not be loaded, but the editor will continue to function normally."
                         )
-                        print(f"Error loading plugin '{plugin_module_name}': {e}")
-                    QTimer.singleShot(0, lambda: pluginLoadError(self, plugin_module_name, error))
+                        print(f"Error loading plugin '{plugin_module_name}': {exceptionType}: {e}")
+                    QTimer.singleShot(0, lambda: pluginLoadError(self, plugin_module_name, error, exceptionType))
 
     for section, submenu in sections.items():
         menubar.addMenu(submenu)
