@@ -11,6 +11,7 @@ def get_linux_productname():
 def crosvm_quirks():
     print("Applying Chrome OS crostini quirks...")
     os.environ["QT_QPA_PLATFORM"] = "xcb"
+    print("done")
 
 def copy_if_not_exists(src, dst, *, follow_symlinks=True):
     if not os.path.exists(dst):
