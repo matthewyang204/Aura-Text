@@ -88,8 +88,8 @@ This file includes the code to run the app. It also scans if the app is being op
 setup instructions.
 """
 
-with open(f"{local_app_data}/data/config.json", "r") as config_file:
-    _config = json.load(config_file)
+# with open(f"{local_app_data}/data/config.json", "r") as config_file:
+#     _config = json.load(config_file)
 with open(f"{local_app_data}/data/theme.json", "r") as config_file:
     _theme = json.load(config_file)
 
